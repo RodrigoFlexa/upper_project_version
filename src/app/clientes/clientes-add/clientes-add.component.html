@@ -1,0 +1,153 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="clienteForm">
+    <form [formGroup]="clienteForm">
+      <ng-template matStepLabel>Dados do Cliente</ng-template>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputNome">Nome</label>
+          <input type="text" class="form-control" id="inputNome" placeholder="Nome do Tutor" formControlName="nome">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="inputCPF">CPF</label>
+          <input type="text" class="form-control" id="inputCPF" placeholder="CPF" formControlName="cpf">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputEmail4">Email</label>
+        <input type="text" class="form-control" id="inputEmail4" placeholder="123@gmail.com" formControlName="email">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputTelefone">Telefone</label>
+          <input type="text" class="form-control" id="inputTelefone" placeholder="Digite o telefone" formControlName="telefone">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputCidade">Cidade</label>
+          <input type="text" class="form-control" id="inputCidade" placeholder="Digite a cidade" formControlName="cidade">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputCep">CEP</label>
+          <input type="text" class="form-control" id="inputCep" placeholder="000000-000" formControlName="cep">
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="petForm">
+    <form [formGroup]="petForm">
+      <ng-template matStepLabel>Dados do Pet</ng-template>
+      <div class="form-group">
+        <label for="inputNomePet">Nome do Pet</label>
+        <input type="text" class="form-control" id="inputNomePet" placeholder="Nome do Pet" formControlName="nomePet">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputIdade">Idade</label>
+          <input type="text" class="form-control" id="inputIdade" placeholder="Idade" formControlName="idade">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPeso">Peso</label>
+          <input type="text" class="form-control" id="inputPeso" placeholder="Peso(kg)" formControlName="peso">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEspecie">Espécie</label>
+          <input type="text" class="form-control" id="inputEspecie" placeholder="Espécie" formControlName="especie">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputRaca">Raça</label>
+          <input type="text" class="form-control" id="inputRaca" placeholder="Raça" formControlName="raca">
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button mat-button matStepperPrevious>Anterior</button>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Confirmação</ng-template>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Dados do Cliente:</h5>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>Tutor:</th>
+              <td>{{ clienteForm.get('nome')?.value }}</td>
+            </tr>
+            <tr>
+              <th>CPF:</th>
+              <td>{{ clienteForm.get('cpf')?.value }}</td>
+            </tr>
+            <tr>
+              <th>Email:</th>
+              <td>{{ clienteForm.get('email')?.value }}</td>
+            </tr>
+            <tr>
+              <th>Telefone:</th>
+              <td>{{ clienteForm.get('telefone')?.value }}</td>
+            </tr>
+            <tr>
+              <th>Cidade:</th>
+              <td>{{ clienteForm.get('cidade')?.value }}</td>
+            </tr>
+            <tr>
+              <th>CEP:</th>
+              <td>{{ clienteForm.get('cep')?.value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-6">
+        <h5>Dados do Pet:</h5>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>Nome do Pet:</th>
+              <td>{{ petForm.get('nomePet')?.value }}</td>
+            </tr>
+            <tr>
+              <th>Idade:</th>
+              <td>{{ petForm.get('idade')?.value }}</td>
+            </tr>
+            <tr>
+              <th>Peso:</th>
+              <td>{{ petForm.get('peso')?.value }}</td>
+            </tr>
+            <tr>
+              <th>Espécie:</th>
+              <td>{{ petForm.get('especie')?.value }}</td>
+            </tr>
+            <tr>
+              <th>Raça:</th>
+              <td>{{ petForm.get('raca')?.value }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button mat-button matStepperPrevious>Anterior</button>
+      <button mat-button (click)="submitForm()">Cadastrar</button>
+    </div>
+  </mat-step>
+
+
+</mat-horizontal-stepper>
+

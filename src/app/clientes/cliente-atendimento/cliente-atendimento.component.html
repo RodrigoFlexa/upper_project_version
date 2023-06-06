@@ -1,0 +1,144 @@
+<div class="d-flex justify-content-between align-items-center mt-4">
+  <h1>Atendimento</h1>
+  <button class="btn btn-primary" (click)="voltarParaClientes()">
+    <i class="fas fa-arrow-left"></i> Voltar
+  </button>
+</div>
+<br>
+
+
+<div class="card mb-4" *ngIf="cliente">
+  <div class="card-header">
+    <i class="fas fa-paw me-1"></i>
+    Informações do Cachorro
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="profile-picture">
+          <img src="assets/images/cachorro.jpeg" alt="Foto do cachorro">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="profile-details">
+              <p><strong>Tutor:</strong> {{ cliente.nome }}</p>
+              <p><strong>Pet:</strong> {{ cliente.pet.nome }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="profile-details">
+              <p><strong>Espécie:</strong> {{ cliente.pet.especie }}</p>
+              <p><strong>Raça:</strong> {{ cliente.pet.raca }}</p>
+              <p><strong>Idade:</strong> {{ cliente.pet.idade }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Evolução do peso</div>
+      <div class="card-body">
+        <canvas #myAreaChart width="100%" height="12"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4">
+  <div class="card-header">
+    <i class="fas fa-clipboard-list me-1"></i>
+    Procedimentos
+  </div>
+  <div class="card-body">
+    <div class="row" *ngIf="cliente">
+      <div class="col-md-4">
+        <a href="#" class="btn btn-primary btn-block btn-lg mb-3 text-white" [routerLink]="['/cliente/anamnese', cliente.id]">
+          <i class="fas fa-clipboard-check text-white"></i> Anamnese
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="btn btn-success btn-block btn-lg mb-3 text-white">
+          <i class="fas fa-file-medical text-white"></i> Exames
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="btn btn-danger btn-block btn-lg mb-3 text-white">
+          <i class="fas fa-syringe text-white"></i> Vacina
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <a href="#" class="btn btn-warning btn-block btn-lg mb-3 text-white">
+          <i class="fas fa-file-alt text-white"></i> Documento
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="btn btn-info btn-block btn-lg mb-3 text-white">
+          <i class="fas fa-hospital text-white"></i> Internação
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="btn btn-secondary btn-block btn-lg mb-3 text-white">
+          <i class="fas fa-undo text-white"></i> Retorno
+        </a>
+      </div>
+    </div>
+    <hr>
+    <h5>Observações</h5>
+    <textarea class="form-control" rows="5"></textarea>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

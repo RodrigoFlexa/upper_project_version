@@ -1,0 +1,335 @@
+<div class="row">
+<!-- Main Content -->
+  <div class="col-md-8 d-flex flex-column">
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <h1>Anamnese</h1>
+      <button   class="btn btn-primary" >
+        <i class="fas fa-arrow-left"></i> Voltar
+      </button>
+    </div>
+
+    <br>
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <h3>Formulário Anamnese</h3>
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-pencil-alt"></i> Editar
+          </button>
+        </div>
+
+        <br>
+        <!-- Adicione a div com a barra de rolagem para o formulário -->
+
+        <!-- Formulário de Motivo da Consulta -->
+        <div class="card mb-4">
+          <div class="card-header font-weight-bold">
+            <i class="fas fa-stethoscope"></i> Motivo da consulta
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <form>
+                  <div class="form-group">
+                    <input type="text" class="form-control"
+                      id="motivoConsulta"
+                      placeholder="Digite o motivo da consulta">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário de Sintomas -->
+        <div class="card mb-4">
+          <div class="card-header font-weight-bold">
+            <i class="fas fa-heartbeat"></i> Sintomas
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mt-3">
+                  <div class="d-flex flex-wrap">
+                    <button class="btn btn-primary btn-sm m-2"
+                      *ngFor="let sintoma of sintomasAdicionados"
+                      (click)="removerSintoma(sintoma)">
+                      <i class="fas fa-times me-1"></i> {{ sintoma }}
+                    </button>
+                  </div>
+                </div>
+                <div class="input-group mt-3">
+                  <input type="text" class="form-control"
+                    [(ngModel)]="sintomaSelecionado"
+                    placeholder="Digite os sintoma"
+                    (keyup.enter)="adicionarSintoma()">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"
+                      (click)="adicionarSintoma()">
+                      <i class="fas fa-plus"></i> Adicionar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário de Cirurgias -->
+        <div class="card mb-4">
+          <div class="card-header font-weight-bold">
+            <i class="fas fa-procedures"></i> Cirurgias Anteriores
+          </div>
+          <div class="card-body mb-4">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mt-3">
+                  <div class="d-flex flex-wrap">
+                    <button class="btn btn-primary btn-sm m-2"
+                      *ngFor="let cirurgia of cirurgiasAnteriores"
+                      (click)="removerCirurgia(cirurgia)">
+                      <i class="fas fa-times me-1"></i> {{ cirurgia }}
+                    </button>
+                  </div>
+                </div>
+                <div class="input-group mt-3">
+                  <input type="text" class="form-control"
+                    [(ngModel)]="cirurgiaSelecionada"
+                    placeholder="Digite as cirurgia"
+                    (keyup.enter)="adicionarCirurgia()">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"
+                      (click)="adicionarCirurgia()">
+                      <i class="fas fa-plus"></i> Adicionar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Formulário de Doenças Prévias -->
+        <div class="card mb-4">
+          <div class="card-header font-weight-bold">
+            <i class="fas fa-notes-medical"></i> Doenças Prévias
+          </div>
+          <div class="card-body mb-4">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mt-3">
+                  <div class="d-flex flex-wrap">
+                    <button class="btn btn-primary btn-sm m-2"
+                      *ngFor="let doenca of doencasPrevias"
+                      (click)="removerDoencaPrevia(doenca)">
+                      <i class="fas fa-times me-1"></i> {{ doenca }}
+                    </button>
+                  </div>
+                </div>
+                <div class="input-group mt-3">
+                  <input type="text" class="form-control"
+                    [(ngModel)]="doencaPreviaSelecionada"
+                    placeholder="Digite as doenças"
+                    (keyup.enter)="adicionarDoencaPrevia()">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"
+                      (click)="adicionarDoencaPrevia()">
+                      <i class="fas fa-plus"></i> Adicionar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário de Medicamentos em Uso -->
+        <div class="card mb-4">
+          <div class="card-header font-weight-bold">
+            <i class="fas fa-prescription-bottle"></i> Medicamentos em Uso
+          </div>
+          <div class="card-body mb-4">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mt-3">
+                  <div class="d-flex flex-wrap">
+                    <button class="btn btn-primary btn-sm m-2"
+                      *ngFor="let medicamento of medicamentosEmUso"
+                      (click)="removerMedicamentoEmUso(medicamento)">
+                      <i class="fas fa-times me-1"></i> {{ medicamento }}
+                    </button>
+                  </div>
+                </div>
+                <div class="input-group mt-3">
+                  <input type="text" class="form-control"
+                    [(ngModel)]="medicamentoSelecionado"
+                    placeholder="Digite os medicamentos"
+                    (keyup.enter)="adicionarMedicamentoEmUso()">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"
+                      (click)="adicionarMedicamentoEmUso()">
+                      <i class="fas fa-plus"></i> Adicionar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário de Comportamento -->
+        <div class="card mb-4">
+          <div class="card-header font-weight-bold">
+            <i class="fas fa-paw"></i> Comportamento
+          </div>
+          <div class="card-body mb-4">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mt-3">
+                  <div class="d-flex flex-wrap">
+                    <button class="btn btn-primary btn-sm m-2"
+                      *ngFor="let comportamento of comportamentos"
+                      (click)="removerComportamento(comportamento)">
+                      <i class="fas fa-times me-1"></i> {{ comportamento }}
+                    </button>
+                  </div>
+                </div>
+                <div class="input-group mt-3">
+                  <input type="text" class="form-control"
+                    [(ngModel)]="comportamentoSelecionado"
+                    placeholder="Digite os comportamentos"
+                    (keyup.enter)="adicionarComportamento()">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"
+                      (click)="adicionarComportamento()">
+                      <i class="fas fa-plus"></i> Adicionar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário de Reprodução -->
+        <div class="card mb-4">
+          <div class="card-header font-weight-bold">
+            <i class="fas fa-venus-mars"></i> Reprodução
+          </div>
+          <div class="card-body mb-4">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mt-3">
+                  <div class="d-flex flex-wrap">
+                    <button class="btn btn-primary btn-sm m-2"
+                      *ngFor="let reproducao of reproducao"
+                      (click)="removerReproducao(reproducao)">
+                      <i class="fas fa-times me-1"></i> {{ reproducao }}
+                    </button>
+                  </div>
+                </div>
+                <div class="input-group mt-3">
+                  <input type="text" class="form-control"
+                    [(ngModel)]="reproducaoSelecionada"
+                    placeholder="Digite os detalhes da reprodução"
+                    (keyup.enter)="adicionarReproducao()">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"
+                      (click)="adicionarReproducao()">
+                      <i class="fas fa-plus"></i> Adicionar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário de Viagem -->
+        <div class="card mb-4">
+          <div class="card-header font-weight-bold">
+            <i class="fas fa-suitcase-rolling"></i> Viagem
+          </div>
+          <div class="card-body mb-4">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mt-3">
+                  <div class="d-flex flex-wrap">
+                    <button class="btn btn-primary btn-sm m-2"
+                      *ngFor="let viagem of viagens"
+                      (click)="removerViagem(viagem)">
+                      <i class="fas fa-times me-1"></i> {{ viagem }}
+                    </button>
+                  </div>
+                </div>
+                <div class="input-group mt-3">
+                  <input type="text" class="form-control"
+                    [(ngModel)]="viagemSelecionada"
+                    placeholder="Digite os detalhes da viagem"
+                    (keyup.enter)="adicionarViagem()">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"
+                      (click)="adicionarViagem()">
+                      <i class="fas fa-plus"></i> Adicionar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-save"></i> Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Coluna Fixa à Direita -->
+<div class="col-md-4" style="position: fixed; right: 0; height: 100vh; padding-left: 75px;">
+  <div class="card h-100">
+    <div class="card-body">
+      <div class="card mb-3">
+        <div class="card-header bg-primary text-white">
+          Informações do Pet
+        </div>
+        <div class="card-body">
+          <p>Informações sobre o pet...</p>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-header bg-secondary text-white">
+          Histórico
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item">First item</li>
+            <li class="list-group-item">Second item</li>
+            <li class="list-group-item">Third item</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-success text-white">
+          Suporte ao diagnóstico
+        </div>
+        <div class="card-body">
+          <p>Conteúdo do suporte ao diagnóstico...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+</div>

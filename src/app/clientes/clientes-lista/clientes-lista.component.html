@@ -1,0 +1,49 @@
+<h1 class="mt-4">Clientes</h1>
+
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+  <li class="breadcrumb-item active">Clientes</li>
+</ol>
+
+<div class="d-flex justify-content-end">
+  <button class="btn btn-primary" (click)="openDialog()">Adicionar Cliente</button>
+</div>
+
+<br>
+<div class="card mb-4">
+  <div class="card-header">
+    <i class="fas fa-table me-1"></i>
+    Tabela Clientes
+  </div>
+  <div class="card-body">
+    <table #dataTable class="display" [(ngModel)]="filteredUsers">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tutor</th>
+          <th>Nome do Pet</th>
+          <th>Espécie</th>
+          <th>Raça</th>
+          <th>Idade</th>
+          <th>Telefone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of filteredUsers; let i = index" (mouseover)="clienteHovered = i" (mouseout)="clienteHovered = -1" (click)="atendimento(user)">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.pet_name }}</td>
+          <td>{{ user.pet_especie }}</td>
+          <td>{{ user.pet_raca }}</td>
+          <td>{{ user.pet_idade }}</td>
+          <td>{{ user.telefone }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<br>
+
+
+

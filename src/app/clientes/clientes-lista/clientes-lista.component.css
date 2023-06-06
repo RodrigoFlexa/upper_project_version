@@ -1,0 +1,28 @@
+.dialog-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dialog-container h2 {
+  margin-top: 0;
+}
+
+.dialog-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.dialog-buttons {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.dialog-buttons button {
+  margin-left: 10px;
+}
