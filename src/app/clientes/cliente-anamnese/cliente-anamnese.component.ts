@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cliente } from '../clientes';
+import { ClientesService } from 'src/app/clientes.service';
+import { User } from '../User';
 
 @Component({
   selector: 'app-cliente-anamnese',
@@ -15,14 +16,34 @@ export class ClienteAnamneseComponent implements OnInit {
   cirurgiasAnteriores: string[] = [];
   cirurgiaSelecionada: string = '';
 
+  cliente: User = new User;
+  iD !: number; 
+  
+  constructor(private route: ActivatedRoute,private router: Router,private service : ClientesService) {}
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
-
-  ngOnInit() {
-
+  async ngOnInit():  Promise<void>{
+    if (history.state && history.state.cliente) {
+      this.cliente = history.state.cliente;
+    }
+    const par : string =  this.route.snapshot.paramMap.get('id') as string;
+    this.iD  =  parseInt(par);
+    await this.getClienteById(this.iD);
   }
 
+  voltarPraatendimento(cliente: User) {
+    this.router.navigate(['/cliente', cliente.id], { state: { cliente } });
+  }
 
+  async getClienteById(MeuId: number) {
+    this.service.getClienteById(MeuId).subscribe(
+      (resposta: User) => {
+        this.cliente = resposta;
+      },
+      error => {
+        console.error('Erro ao obter o cliente:', error);
+      }
+    );
+  }
 
   adicionarSintoma(): void {
     if (this.sintomaSelecionado) {

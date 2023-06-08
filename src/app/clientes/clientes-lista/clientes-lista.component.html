@@ -16,7 +16,7 @@
     Tabela Clientes
   </div>
   <div class="card-body">
-    <table #dataTable class="display" [(ngModel)]="filteredUsers">
+    <table #dataTable class="display">
       <thead>
         <tr>
           <th>ID</th>
@@ -26,6 +26,7 @@
           <th>Raça</th>
           <th>Idade</th>
           <th>Telefone</th>
+          <th>Ações</th> <!-- Coluna para os botões de ação -->
         </tr>
       </thead>
       <tbody>
@@ -37,6 +38,14 @@
           <td>{{ user.pet_raca }}</td>
           <td>{{ user.pet_idade }}</td>
           <td>{{ user.telefone }}</td>
+          <td>
+            <div class="button-group">
+              <button class="btn btn-action btn-primary"  (click)="attCliente(user.id); $event.stopPropagation()" >Editar</button>
+              <div class="divider"></div>
+              <button class="btn btn-action btn-danger" (click)="deleteCliente(user.id); $event.stopPropagation()">Deletar</button>
+            </div>
+          </td>
+          
         </tr>
       </tbody>
     </table>
@@ -44,6 +53,3 @@
 </div>
 <br>
 <br>
-
-
-

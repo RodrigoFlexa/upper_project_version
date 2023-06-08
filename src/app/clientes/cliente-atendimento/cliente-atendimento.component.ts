@@ -1,8 +1,9 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cliente } from '../clientes';
+import { User } from '../User';
 
 import { Component, OnInit, AfterViewInit,ViewChild,ElementRef  } from '@angular/core';
 import { Chart } from 'chart.js';
+import { ClientesService } from 'src/app/clientes.service';
 
 @Component({
   selector: 'app-cliente-atendimento',
@@ -11,15 +12,23 @@ import { Chart } from 'chart.js';
 })
 
 export class ClienteAtendimentoComponent implements OnInit,AfterViewInit {
-  cliente: Cliente | undefined;
+  @ViewChild('myAreaChart', { static: false }) areaChartRef!: ElementRef;
+  areaChart!: Chart;
+  cliente: User = new User;
+  iD !: number; 
+  
+  constructor(private route: ActivatedRoute,private router: Router,private service : ClientesService) {}
 
-  constructor(private route: ActivatedRoute,private router: Router) {}
 
-  ngOnInit() {
+  async ngOnInit():  Promise<void>{
     if (history.state && history.state.cliente) {
       this.cliente = history.state.cliente;
     }
+    const par : string =  this.route.snapshot.paramMap.get('id') as string;
+    this.iD  =  parseInt(par);
+    await this.getClienteById(this.iD);
   }
+
 
   ngAfterViewInit(): void {
     // Area Chart Example
@@ -36,25 +45,27 @@ export class ClienteAtendimentoComponent implements OnInit,AfterViewInit {
         borderWidth: 1
       }]
     };
+    
     this.areaChart = new Chart(areaChartCtx, {
       type: 'line',
-      data: areaChartData
+      data: areaChartData,
+      options: {
+        maintainAspectRatio: false // Add this option to make the chart responsive
+      }
     });
-
   }
-
-
-  @ViewChild('myAreaChart', { static: false }) areaChartRef!: ElementRef;
-  areaChart!: Chart;
-
-
-
   voltarParaClientes() {
     this.router.navigate(['/clientes-lista']);
   }
 
-  // do_anamnese(cliente: Cliente) {
-  //   this.router.navigate(['/cliente/anamnese', cliente.id], { state: { cliente } });
-  // }
-
+  async getClienteById(MeuId: number) {
+    this.service.getClienteById(MeuId).subscribe(
+      (resposta: User) => {
+        this.cliente = resposta;
+      },
+      error => {
+        console.error('Erro ao obter o cliente:', error);
+      }
+    );
+  }
 }

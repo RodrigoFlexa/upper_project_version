@@ -11,13 +11,15 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     ClientesListaComponent,
     ClienteAtendimentoComponent,
     ClienteAnamneseComponent,
-    ClientesAddComponent
+    ClientesAddComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,

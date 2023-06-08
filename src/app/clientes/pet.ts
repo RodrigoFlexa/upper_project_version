@@ -1,17 +1,19 @@
 export class Pet {
   id : number;
   nome: string;
-  idade: number;
-  peso: number;
+  idade: string;
+  peso: string;
   especie: string;
-  raca: string
+  raca: string;
+  sexo:string;
   constructor() {
     this.id = 0;
     this.nome = '';
-    this.idade = 0;
-    this.peso = 0;
+    this.idade = "";
+    this.peso = "";
     this.especie =  "";
-    this.raca =  ""
+    this.raca =  "";
+    this.sexo = ""
   }
 }
 
