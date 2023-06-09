@@ -12,6 +12,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { NgChartsModule } from 'ng2-charts';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     ClienteAtendimentoComponent,
     ClienteAnamneseComponent,
     ClientesAddComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    SuccessDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +32,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     MatStepperModule,
     MatDialogModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    NgChartsModule,
   ],
   exports: [
 

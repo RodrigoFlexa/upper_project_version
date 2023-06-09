@@ -1,0 +1,20 @@
+.date {
+  font-weight: bold;
+  color: #555;
+  margin-right: 10px;
+}
+
+.reason {
+  font-style: italic;
+  color: #888;
+}
+/* .chart-card-body {
+  height: 10px;
+} */
+
+.expanded {
+  height: 200px; /* Defina a altura desejada para o body do card */
+}
+.not_expanded {
+  height: 10px; /* Defina a altura desejada para o body do card quando não estiver expandido */
+}

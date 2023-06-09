@@ -1,9 +1,9 @@
-import { Pet } from './../pet';
+import { Pet } from '../pet';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ClientesService } from 'src/app/clientes.service';
-import { User } from '../User';
+import { User } from '../user';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from './clientes/User';
+import { User } from './clientes/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientesService {
-  private apiURL = 'http://localhost:8080/api/users'; // URL da API
+  private apiURL = 'http://192.168.100.9:8080/api/users'; // URL completa da API
+
 
   constructor(private http: HttpClient) { }
 

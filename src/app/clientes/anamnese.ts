@@ -1,8 +1,7 @@
 import { Pet } from "./pet";
 
 export class Anamnese {
-  id : number;
-
+  pet_id : number;
   motivoDaConsulta : string;
   sintomas: string;
   cirurgias : string;
@@ -11,10 +10,10 @@ export class Anamnese {
   comportamento : string;
   reproducao : string;
   viagem : string;
-  pet: Pet;
-  
+  dataCriacao: string;
+
   constructor() {
-    this.id = 0
+    this.pet_id = 0;
     this.motivoDaConsulta ='';
     this.sintomas = '';
     this.cirurgias = '';
@@ -23,7 +22,7 @@ export class Anamnese {
     this.comportamento = ''
     this.reproducao= '';
     this.viagem = '';
-    this.pet = new Pet()
+    this.dataCriacao=''
   }
 }
 

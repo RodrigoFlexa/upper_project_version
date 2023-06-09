@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { User } from '../User';
+import { User } from '../user';
 import { Router } from '@angular/router';
-import $ from 'jquery';
-import 'datatables.net';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientesAddComponent } from '../clientes-add/clientes-add.component';
 import { ClientesService } from 'src/app/clientes.service';
 import { Pet } from '../pet';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+
+declare var $: any;
 
 @Component({
   selector: 'app-clientes-lista',
@@ -17,7 +17,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 export class ClientesListaComponent implements OnInit, AfterViewInit {
   clienteHovered: number = -1;
   clientes: User[] = [];
-  filteredUsers: any[] = []; // Array para armazenar os dados filtrados
+  displayedUsers: any[] = [];
   cliente: User = new User();
   pet: Pet = new Pet();
   intervalId: any;
@@ -52,7 +52,7 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
       (clientes: User[]) => {
         this.clientes = clientes;
 
-        this.filteredUsers = this.clientes.map(cliente => ({
+        this.displayedUsers = this.clientes.map(cliente => ({
           id: cliente.id,
           name: cliente.nome,
           pet_name: cliente.pet.nome,
@@ -61,6 +61,9 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
           pet_idade: cliente.pet.idade,
           telefone: cliente.telefone,
         }));
+
+        // Atualizar a tabela após obter os dados
+        this.updateDataTable();
       },
       (error) => {
         console.error(error);
@@ -89,13 +92,23 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
   }
 
   attCliente(id: number) {
-    console.log(id)
+    console.log(id);
   }
 
   @ViewChild('dataTable', { static: false }) table: any;
+
   ngAfterViewInit() {
-    $(document).ready(() => {
-      this.table = $(this.table.nativeElement);
+    this.table = $(this.table.nativeElement);
+    this.updateDataTable();
+  }
+
+  private updateDataTable() {
+    if (this.table && $.fn.DataTable.isDataTable(this.table)) {
+      // Destruir a tabela existente antes de recriá-la
+      this.table.DataTable().destroy();
+    }
+
+    setTimeout(() => {
       this.table.DataTable({
         language: {
           emptyTable: '',
@@ -119,6 +132,6 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
           }
         }
       });
-    });
+    }, 0);
   }
 }

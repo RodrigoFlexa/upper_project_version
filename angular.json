@@ -20,7 +20,9 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
+              "src/laikapet.ico",
               "src/assets"
+
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",

@@ -30,7 +30,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of filteredUsers; let i = index" (mouseover)="clienteHovered = i" (mouseout)="clienteHovered = -1" (click)="atendimento(user)">
+        <tr *ngFor="let user of displayedUsers; let i = index" (mouseover)="clienteHovered = i" (mouseout)="clienteHovered = -1" (click)="atendimento(user)">
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.pet_name }}</td>
@@ -40,12 +40,11 @@
           <td>{{ user.telefone }}</td>
           <td>
             <div class="button-group">
-              <button class="btn btn-action btn-primary"  (click)="attCliente(user.id); $event.stopPropagation()" >Editar</button>
+              <button class="btn btn-action btn-primary" (click)="attCliente(user.id); $event.stopPropagation()">Editar</button>
               <div class="divider"></div>
               <button class="btn btn-action btn-danger" (click)="deleteCliente(user.id); $event.stopPropagation()">Deletar</button>
             </div>
           </td>
-          
         </tr>
       </tbody>
     </table>

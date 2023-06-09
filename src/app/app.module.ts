@@ -13,6 +13,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AnamneseService } from './anamnese.service';
+import { NgChartsModule } from 'ng2-charts';
+
+
 
 @NgModule({
   declarations: [
@@ -29,10 +33,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     MatStepperModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgChartsModule,
+
   ],
   providers: [
-    ClientesService
+    ClientesService,
+    AnamneseService
   ],
   bootstrap: [AppComponent]
 })
