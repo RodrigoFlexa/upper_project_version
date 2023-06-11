@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class ClientesAddComponent implements OnInit {
   petForm: FormGroup;
   clienteForm: FormGroup;
-  isLinear = false;
+  isLinear = true;
 
   constructor(
     private router: Router,
@@ -27,7 +27,8 @@ export class ClientesAddComponent implements OnInit {
       idade: ['', Validators.required],
       peso: ['', Validators.required],
       especie: ['', Validators.required],
-      raca: ['', Validators.required]
+      raca: ['', Validators.required],
+      sexo: ['', Validators.required]
     });
 
     this.clienteForm = this.formBuilder.group({
@@ -36,7 +37,8 @@ export class ClientesAddComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
       cidade: ['', Validators.required],
-      cep: ['', Validators.required]
+      cep: ['', Validators.required],
+      numero: ['', Validators.required]
     });
   }
 
@@ -59,7 +61,7 @@ export class ClientesAddComponent implements OnInit {
         peso: petFormData.peso,
         especie: petFormData.especie,
         raca: petFormData.raca,
-        sexo:'macho'
+        sexo:petFormData.sexo
       };
 
       const cliente: User = {
@@ -70,7 +72,7 @@ export class ClientesAddComponent implements OnInit {
         cidade: clienteFormData.cidade,
         cep: clienteFormData.cep,
         cpf: clienteFormData.cpf,
-        casa: '123',
+        casa: clienteFormData.casa,
         pet: pet
       };
 
