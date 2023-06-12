@@ -7,7 +7,7 @@ import { User } from './clientes/user';
   providedIn: 'root'
 })
 export class ClientesService {
-  private apiURL = 'http://192.168.100.9:8080/api/users'; // URL completa da API
+  private apiURL = 'http://localhost:8080/api/users'; // URL completa da API
 
 
   constructor(private http: HttpClient) { }

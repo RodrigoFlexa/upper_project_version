@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
 import { format } from 'date-fns';
 
+// declare var mdb: any;
+
 @Component({
   selector: 'app-cliente-anamnese',
   templateUrl: './cliente-anamnese.component.html',
@@ -29,6 +31,9 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
 
   sintomasAdicionados: string[] = [];
   sintomaSelecionado: string = '';
+
+  
+  
 
   cirurgiasAnteriores: string[] = [];
   cirurgiaSelecionada: string = '';
@@ -197,7 +202,18 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
+    // const basicAutocomplete = document.querySelector('#search-autocomplete');
+    // const data = ['One', 'Two', 'Three', 'Four', 'Five'];
+    // const dataFilter = (value: string) => {
+    //   return data.filter((item) => {
+    //     return item.toLowerCase().startsWith(value.toLowerCase());
+    //   });
+    // };
+
+    // new mdb.Autocomplete(basicAutocomplete, {
+    //   filter: dataFilter
+    // });
   }
 
 

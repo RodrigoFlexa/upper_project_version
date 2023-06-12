@@ -7,7 +7,7 @@ import { Anamnese } from './clientes/anamnese';
   providedIn: 'root'
 })
 export class AnamneseService {
-  private baseUrl = 'http://192.168.100.9:8080/anamneses/pets';
+  private baseUrl = 'http://localhost:8080/anamneses/pets';
   constructor(private http: HttpClient) { }
 
   cadastrarAnamnese(id: number, anamnese: Anamnese):Observable<Anamnese>{
