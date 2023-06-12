@@ -9,11 +9,15 @@ import { ClienteAnamneseComponent } from './cliente-anamnese/cliente-anamnese.co
 import { ClientesAddComponent } from './clientes-add/clientes-add.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
+
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { SuccessDialogComponent } from './success-dialog/success-dialog.componen
     MatButtonModule,
     MatInputModule,
     NgChartsModule,
+    MatAutocompleteModule,
+    MatIconModule,
+    MatGridListModule,
+    MatButtonModule
   ],
   exports: [
 

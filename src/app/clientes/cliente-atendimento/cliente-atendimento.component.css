@@ -32,6 +32,17 @@
   margin-bottom: 10px;
 }
 
+.custom-card-header {
+  background-color: #0099CC;
+  color: #FFFFFF;
+  text-align: left;
+}
+
+.custom-button {
+  background-color: #66CCCC;
+  color: #FFFFFF;
+}
+
 /* Responsiveness */
 @media (max-width: 576px) {
   .card-body {
@@ -47,3 +58,7 @@
     padding-top: 15px;
   }
 }
+
+
+
+

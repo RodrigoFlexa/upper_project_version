@@ -1,17 +1,13 @@
 <h1 class="mt-4">Clientes</h1>
 
-<ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-  <li class="breadcrumb-item active">Clientes</li>
-</ol>
 
 <div class="d-flex justify-content-end">
-  <button class="btn btn-primary" (click)="openDialog()">Adicionar Cliente</button>
+  <button class="btn btn-primary custom-button" (click)="openDialog()">Adicionar Cliente</button>
 </div>
 
 <br>
 <div class="card mb-4">
-  <div class="card-header">
+  <div class="card-header custom-card-header">
     <i class="fas fa-table me-1"></i>
     Tabela Clientes
   </div>
@@ -40,9 +36,9 @@
           <td>{{ user.telefone }}</td>
           <td>
             <div class="button-group">
-              <button class="btn btn-action btn-primary" (click)="attCliente(user.id); $event.stopPropagation()">Editar</button>
+              <button class="btn btn-action custom-edit-button" (click)="attCliente(user.id); $event.stopPropagation()">Editar</button>
               <div class="divider"></div>
-              <button class="btn btn-action btn-danger" (click)="deleteCliente(user.id); $event.stopPropagation()">Deletar</button>
+              <button class="btn btn-action custom-delete-button" (click)="deleteCliente(user.id); $event.stopPropagation()">Deletar</button>
             </div>
           </td>
         </tr>

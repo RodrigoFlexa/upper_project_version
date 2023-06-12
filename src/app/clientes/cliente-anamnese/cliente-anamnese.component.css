@@ -18,3 +18,20 @@
 .not_expanded {
   height: 10px; /* Defina a altura desejada para o body do card quando não estiver expandido */
 }
+
+.custom-card-header {
+  background-color: #0099CC;
+  color: #FFFFFF;
+  text-align: left;
+}
+
+.custom-card-header-2 {
+  background-color: #0099CC;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.custom-button {
+  background-color: #66CCCC;
+  color: #FFFFFF;
+}

@@ -15,8 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnamneseService } from './anamnese.service';
 import { NgChartsModule } from 'ng2-charts';
-
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,7 @@ import { NgChartsModule } from 'ng2-charts';
     MatDialogModule,
     BrowserAnimationsModule,
     NgChartsModule,
-
+    MatAutocompleteModule
   ],
   providers: [
     ClientesService,

@@ -1,14 +1,29 @@
 import { Anamnese } from './../anamnese';
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientesService } from 'src/app/clientes.service';
 import { User } from '../user';
 import { AnamneseService } from 'src/app/anamnese.service';
-import { Chart} from 'chart.js';
+import { Chart } from 'chart.js';
 import { ChartOptions } from 'chart.js';
 import { MatDialog } from '@angular/material/dialog';
 import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
 import { format } from 'date-fns';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import {
+  MatAutocomplete,
+  MatAutocompleteModule,
+} from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 // declare var mdb: any;
 
@@ -18,23 +33,35 @@ import { format } from 'date-fns';
   styleUrls: ['./cliente-anamnese.component.css'],
 })
 export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
-  cliente: User = new User;
-  id !: number;
+  //Inicializações da api
+  cliente: User = new User();
+  id!: number;
   anamneses: Anamnese[] = [];
 
+  //Gráficos Suporte ao diagnóstico
   suporteDiagnosticoAtivado: boolean = false;
   chartCreated: boolean = false;
   chartCardActivated: boolean = false;
 
-  motivos: string[] = [];
-  motivosSelecionada: string = '';
-
+  //Sintomas e seu autocomplete
+  @ViewChild('auto') sintomasMatAutocomplete: MatAutocomplete | undefined;
   sintomasAdicionados: string[] = [];
   sintomaSelecionado: string = '';
+  sintomaControl = new FormControl();
+  filteredSintomas!: Observable<string[]>;
+  sintomas_sugestoes: string[] = ['Febre', 'Letargia', 'Tosse', 'Espirros', 'Vômito', 'Diarreia', 'Perda de apetite', 'Sede excessiva', 'Coceira', 'Perda de pelos', 'Dificuldade para respirar', 'Manqueira', 'Inchaço', 'Desidratação', 'Dor abdominal', 'Dor ao urinar', 'Dor nas articulações', 'Problemas de pele', 'Inquietação', 'Perda de peso'];
 
-  
-  
+  private _filterSintomas(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.sintomas_sugestoes.filter((sintoma: string) =>
+      sintoma.toLowerCase().includes(filterValue)
+    );
+  }
 
+  //Inicialização dos forms
+  motivos: string[] = [];
+  motivosSelecionada: string = '';
+  //Inicialização dos forms
   cirurgiasAnteriores: string[] = [];
   cirurgiaSelecionada: string = '';
 
@@ -53,21 +80,27 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   viagens: string[] = [];
   viagemSelecionada: string = '';
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    private service : ClientesService,
+    private service: ClientesService,
     private anamneseService: AnamneseService,
     private dialog: MatDialog
-    ) {}
+  ) {}
 
-  async ngOnInit():  Promise<void>{
+  async ngOnInit(): Promise<void> {
     if (history.state && history.state.cliente) {
       this.cliente = history.state.cliente;
     }
-    const par : string =  this.route.snapshot.paramMap.get('id') as string;
-    this.id  =  parseInt(par);
+    const par: string = this.route.snapshot.paramMap.get('id') as string;
+    this.id = parseInt(par);
     await this.getClienteById(this.id);
     await this.getAnamnesesByPetId(this.id);
+
+    this.filteredSintomas = this.sintomaControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filterSintomas(value))
+    );
   }
 
   async getClienteById(MeuId: number) {
@@ -75,13 +108,13 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       (resposta: User) => {
         this.cliente = resposta;
       },
-      error => {
+      (error) => {
         console.error('Erro ao obter o cliente:', error);
       }
     );
   }
 
-  async getAnamnesesByPetId(id: number){
+  async getAnamnesesByPetId(id: number) {
     this.anamneseService.getAnamnesesByPetId(id).subscribe(
       (anamneses: Anamnese[]) => {
         this.anamneses = anamneses;
@@ -93,10 +126,6 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     );
   }
 
-  voltarPraatendimento(cliente: User) {
-    this.router.navigate(['/cliente', cliente.id], { state: { cliente } });
-  }
-
   ativarSuporteDiagnostico() {
     const preenchido = this.fichaAnamnesePreenchida();
     if (preenchido) {
@@ -105,15 +134,20 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       if (!this.chartCreated) {
         const canvas = document.getElementById('myChart') as HTMLCanvasElement;
         const ctx = canvas.getContext('2d');
-        if (ctx !== null) { // Verificar se o contexto é diferente de null
+        if (ctx !== null) {
+          // Verificar se o contexto é diferente de null
           this.createPieChart(ctx);
           this.chartCreated = true;
         } else {
-          console.error('Failed to get the 2D rendering context for the canvas element');
+          console.error(
+            'Failed to get the 2D rendering context for the canvas element'
+          );
         }
       }
     } else {
-      alert('Por favor, preencha a ficha de anamnese por completo antes de ativar o suporte ao diagnóstico.');
+      alert(
+        'Por favor, preencha a ficha de anamnese por completo antes de ativar o suporte ao diagnóstico.'
+      );
     }
   }
 
@@ -121,20 +155,22 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     const options: ChartOptions<'pie'> = {
       plugins: {
         legend: {
-          position: 'right'
-        }
-      }
+          position: 'right',
+        },
+      },
     };
     new Chart(ctx, {
       type: 'pie',
       data: {
-        datasets: [{
-          data: [10, 20, 30],
-          backgroundColor: ['red', 'yellow', 'blue']
-        }],
-        labels: ['Red', 'Yellow', 'Blue']
+        datasets: [
+          {
+            data: [10, 20, 30],
+            backgroundColor: ['red', 'yellow', 'blue'],
+          },
+        ],
+        labels: ['Red', 'Yellow', 'Blue'],
       },
-      options: options
+      options: options,
     });
   }
 
@@ -157,7 +193,6 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       data: message,
     });
   }
-
 
   cadastrarAnamnese() {
     console.log('Motivos:', this.motivos);
@@ -182,65 +217,30 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       comportamento: comportamentos_str,
       reproducao: reproducao_str,
       viagem: viagens_str,
-      dataCriacao : format(new Date(), 'dd/MM/yyyy'),
-      pet_id: this.cliente.id
+      dataCriacao: format(new Date(), 'dd/MM/yyyy'),
+      pet_id: this.cliente.id,
     };
 
-    console.log("Cadastrando")
-    console.log(motivos_str)
-    console.log(anamnese.dataCriacao)
+    console.log('Cadastrando');
+    console.log(motivos_str);
+    console.log(anamnese.dataCriacao);
     this.anamneseService.cadastrarAnamnese(this.id, anamnese).subscribe(
-      response => {
+      (response) => {
         console.log('Anamnese cadastrada com sucesso', response);
         this.openSuccessDialog('Anamnese cadastrada com sucesso!');
         this.getAnamnesesByPetId(this.id);
       },
-      error => {
+      (error) => {
         console.error('Erro ao cadastrar anamnese', error);
       }
     );
-
   }
 
-  ngAfterViewInit() {
-    // const basicAutocomplete = document.querySelector('#search-autocomplete');
-    // const data = ['One', 'Two', 'Three', 'Four', 'Five'];
-    // const dataFilter = (value: string) => {
-    //   return data.filter((item) => {
-    //     return item.toLowerCase().startsWith(value.toLowerCase());
-    //   });
-    // };
-
-    // new mdb.Autocomplete(basicAutocomplete, {
-    //   filter: dataFilter
-    // });
+  voltarPraatendimento(cliente: User) {
+    this.router.navigate(['/cliente', cliente.id], { state: { cliente } });
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  ngAfterViewInit() {}
 
   adicionarSintoma(): void {
     if (this.sintomaSelecionado) {
@@ -297,7 +297,6 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   adicionarComportamento(): void {
     if (this.comportamentoSelecionado) {
       this.comportamentos.push(this.comportamentoSelecionado);
@@ -340,7 +339,6 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   adicionarMotivo(): void {
     if (this.motivosSelecionada) {
       this.motivos.push(this.motivosSelecionada);
@@ -354,7 +352,4 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       this.motivos.splice(index, 1);
     }
   }
-
 }
-
-
