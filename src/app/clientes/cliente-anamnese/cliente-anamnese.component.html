@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between align-items-center mt-4">
       <h1>Anamnese</h1>
 
-      <button class="btn btn-primary custom-button custom-button" (click)="voltarPraatendimento(cliente)"  >
+      <button class="btn btn-primary custom-button custom-button" (click)="voltarPraatendimento(cliente)">
         <i class="fas fa-arrow-left"></i> Voltar
       </button>
 
@@ -33,18 +33,15 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary custom-button btn-sm m-2"
-                      *ngFor="let motivo of motivos"
+                    <button class="btn btn-primary custom-button btn-sm m-2" *ngFor="let motivo of motivos"
                       (click)="removerMotivo(motivo)">
                       <i class="fas fa-times me-1"></i> {{ motivo }}
                     </button>
                   </div>
                 </div>
                 <div class="input-group mt-3">
-                  <input type="text" class="form-control"
-                    [(ngModel)]="motivosSelecionada"
-                    placeholder="Digite o motivo da consulta"
-                    (keyup.enter)="adicionarMotivo()">
+                  <input type="text" class="form-control" [(ngModel)]="motivosSelecionada"
+                    placeholder="Digite o motivo da consulta" (keyup.enter)="adicionarMotivo()">
                   <div class="input-group-append">
 
                     <button class="btn btn-primary w-100 custom-button custom-button" type="button"
@@ -68,26 +65,25 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary custom-button btn-sm m-2"
-                      *ngFor="let sintoma of sintomasAdicionados"
+                    <button class="btn btn-primary custom-button btn-sm m-2" *ngFor="let sintoma of sintomasAdicionados"
                       (click)="removerSintoma(sintoma)">
                       <i class="fas fa-times me-1"></i> {{ sintoma }}
                     </button>
                   </div>
                 </div>
                 <div class="input-group mt-3">
-                  <input type="text" class="form-control" [(ngModel)]="sintomaSelecionado" [formControl]="sintomaControl" placeholder="Digite os sintoma" (keyup.enter)="adicionarSintoma()"
-                  [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let sugestao of filteredSintomas | async" [value]="sugestao">
-                    {{ sugestao }}
-                  </mat-option>
-                </mat-autocomplete>
+                  <input type="text" class="form-control" [(ngModel)]="sintomaSelecionado"
+                    [formControl]="sintomaControl" placeholder="Digite os sintoma" (keyup.enter)="adicionarSintoma()"
+                    [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let sugestao of filteredSintomas | async" [value]="sugestao">
+                      {{ sugestao }}
+                    </mat-option>
+                  </mat-autocomplete>
 
 
                   <div class="input-group-append">
-                    <button class="btn btn-primary   custom-button" type="button"
-                      (click)="adicionarSintoma()">
+                    <button class="btn btn-primary   custom-button" type="button" (click)="adicionarSintoma()">
                       <i class="fas fa-plus"></i> Adicionar
                     </button>
                   </div>
@@ -96,30 +92,6 @@
             </div>
           </div>
         </div>
-
-
-
-
-
-
-        <!-- <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold">
-            <i class="fas fa-heartbeat"></i> Sintomas
-          </div>
-          <div class="card-body">
-            <div class="input-group">
-              <mat-form-field class="example-form-field flex-grow-1">
-                <input matInput placeholder="Enter text">
-              </mat-form-field>
-
-            <button class="btn btn-primary   custom-button" type="button"
-                (click)="adicionarCirurgia()">
-                <i class="fas fa-plus"></i> Adicionar
-            </button>
-          </div>
-        </div> -->
-
-
 
         <!-- Formulário de Cirurgias -->
         <div class="card mb-4">
@@ -132,20 +104,16 @@
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
                     <button class="btn btn-primary   custom-button btn-sm m-2"
-                      *ngFor="let cirurgia of cirurgiasAnteriores"
-                      (click)="removerCirurgia(cirurgia)">
+                      *ngFor="let cirurgia of cirurgiasAnteriores" (click)="removerCirurgia(cirurgia)">
                       <i class="fas fa-times me-1"></i> {{ cirurgia }}
                     </button>
                   </div>
                 </div>
                 <div class="input-group mt-3">
-                  <input type="text" class="form-control"
-                    [(ngModel)]="cirurgiaSelecionada"
-                    placeholder="Digite as cirurgia"
-                    (keyup.enter)="adicionarCirurgia()">
+                  <input type="text" class="form-control" [(ngModel)]="cirurgiaSelecionada"
+                    placeholder="Digite as cirurgias" (keyup.enter)="adicionarCirurgia()">
                   <div class="input-group-append">
-                    <button class="btn btn-primary   custom-button" type="button"
-                      (click)="adicionarCirurgia()">
+                    <button class="btn btn-primary   custom-button" type="button" (click)="adicionarCirurgia()">
                       <i class="fas fa-plus"></i> Adicionar
                     </button>
                   </div>
@@ -165,24 +133,31 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary   custom-button btn-sm m-2"
-                      *ngFor="let doenca of doencasPrevias"
+                    <button class="btn btn-primary   custom-button btn-sm m-2" *ngFor="let doenca of doencasPrevias"
                       (click)="removerDoencaPrevia(doenca)">
                       <i class="fas fa-times me-1"></i> {{ doenca }}
                     </button>
                   </div>
                 </div>
                 <div class="input-group mt-3">
-                  <input type="text" class="form-control"
-                    [(ngModel)]="doencaPreviaSelecionada"
-                    placeholder="Digite as doenças"
-                    (keyup.enter)="adicionarDoencaPrevia()">
+
+                  <input type="text" class="form-control" [(ngModel)]="doencaPreviaSelecionada"
+                  [formControl]="doencasControl" placeholder="Digite as doenças"
+                  (keyup.enter)="adicionarDoencaPrevia()" [matAutocomplete]="doencasAuto">
+                <mat-autocomplete #doencasAuto="matAutocomplete">
+                  <mat-option *ngFor="let sugestao of filteredDoencas | async" [value]="sugestao">
+                    {{ sugestao }}
+                  </mat-option>
+                </mat-autocomplete>
+                
+
+
                   <div class="input-group-append">
-                    <button class="btn btn-primary   custom-button" type="button"
-                      (click)="adicionarDoencaPrevia()">
+                    <button class="btn btn-primary   custom-button" type="button" (click)="adicionarDoencaPrevia()">
                       <i class="fas fa-plus"></i> Adicionar
                     </button>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -200,20 +175,16 @@
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
                     <button class="btn btn-primary   custom-button btn-sm m-2"
-                      *ngFor="let medicamento of medicamentosEmUso"
-                      (click)="removerMedicamentoEmUso(medicamento)">
+                      *ngFor="let medicamento of medicamentosEmUso" (click)="removerMedicamentoEmUso(medicamento)">
                       <i class="fas fa-times me-1"></i> {{ medicamento }}
                     </button>
                   </div>
                 </div>
                 <div class="input-group mt-3">
-                  <input type="text" class="form-control"
-                    [(ngModel)]="medicamentoSelecionado"
-                    placeholder="Digite os medicamentos"
-                    (keyup.enter)="adicionarMedicamentoEmUso()">
+                  <input type="text" class="form-control" [(ngModel)]="medicamentoSelecionado"
+                    placeholder="Digite os medicamentos" (keyup.enter)="adicionarMedicamentoEmUso()">
                   <div class="input-group-append">
-                    <button class="btn btn-primary   custom-button" type="button"
-                      (click)="adicionarMedicamentoEmUso()">
+                    <button class="btn btn-primary   custom-button" type="button" (click)="adicionarMedicamentoEmUso()">
                       <i class="fas fa-plus"></i> Adicionar
                     </button>
                   </div>
@@ -234,20 +205,16 @@
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
                     <button class="btn btn-primary   custom-button btn-sm m-2"
-                      *ngFor="let comportamento of comportamentos"
-                      (click)="removerComportamento(comportamento)">
+                      *ngFor="let comportamento of comportamentos" (click)="removerComportamento(comportamento)">
                       <i class="fas fa-times me-1"></i> {{ comportamento }}
                     </button>
                   </div>
                 </div>
                 <div class="input-group mt-3">
-                  <input type="text" class="form-control"
-                    [(ngModel)]="comportamentoSelecionado"
-                    placeholder="Digite os comportamentos"
-                    (keyup.enter)="adicionarComportamento()">
+                  <input type="text" class="form-control" [(ngModel)]="comportamentoSelecionado"
+                    placeholder="Digite os comportamentos" (keyup.enter)="adicionarComportamento()">
                   <div class="input-group-append">
-                    <button class="btn btn-primary   custom-button" type="button"
-                      (click)="adicionarComportamento()">
+                    <button class="btn btn-primary   custom-button" type="button" (click)="adicionarComportamento()">
                       <i class="fas fa-plus"></i> Adicionar
                     </button>
                   </div>
@@ -267,21 +234,17 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary   custom-button btn-sm m-2"
-                      *ngFor="let reproducao of reproducao"
+                    <button class="btn btn-primary   custom-button btn-sm m-2" *ngFor="let reproducao of reproducao"
                       (click)="removerReproducao(reproducao)">
                       <i class="fas fa-times me-1"></i> {{ reproducao }}
                     </button>
                   </div>
                 </div>
                 <div class="input-group mt-3">
-                  <input type="text" class="form-control"
-                    [(ngModel)]="reproducaoSelecionada"
-                    placeholder="Digite os detalhes da reprodução"
-                    (keyup.enter)="adicionarReproducao()">
+                  <input type="text" class="form-control" [(ngModel)]="reproducaoSelecionada"
+                    placeholder="Digite os detalhes da reprodução" (keyup.enter)="adicionarReproducao()">
                   <div class="input-group-append">
-                    <button class="btn btn-primary   custom-button" type="button"
-                      (click)="adicionarReproducao()">
+                    <button class="btn btn-primary   custom-button" type="button" (click)="adicionarReproducao()">
                       <i class="fas fa-plus"></i> Adicionar
                     </button>
                   </div>
@@ -307,21 +270,17 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary   custom-button btn-sm m-2"
-                      *ngFor="let viagem of viagens"
+                    <button class="btn btn-primary   custom-button btn-sm m-2" *ngFor="let viagem of viagens"
                       (click)="removerViagem(viagem)">
                       <i class="fas fa-times me-1"></i> {{ viagem }}
                     </button>
                   </div>
                 </div>
                 <div class="input-group mt-3">
-                  <input type="text" class="form-control"
-                    [(ngModel)]="viagemSelecionada"
-                    placeholder="Digite os detalhes da viagem"
-                    (keyup.enter)="adicionarViagem()">
+                  <input type="text" class="form-control" [(ngModel)]="viagemSelecionada"
+                    placeholder="Digite os detalhes da viagem" (keyup.enter)="adicionarViagem()">
                   <div class="input-group-append">
-                    <button class="btn btn-primary   custom-button" type="button"
-                      (click)="adicionarViagem()">
+                    <button class="btn btn-primary   custom-button" type="button" (click)="adicionarViagem()">
                       <i class="fas fa-plus"></i> Adicionar
                     </button>
                   </div>
@@ -333,8 +292,7 @@
 
         <br>
         <div class="d-flex justify-content-end">
-          <button class="btn btn-primary custom-button" type="button"
-            (click)="cadastrarAnamnese()">
+          <button class="btn btn-primary custom-button" type="button" (click)="cadastrarAnamnese()">
             Salvar
           </button>
         </div>
@@ -398,13 +356,14 @@
           </div>
           <div class="card-footer">
             <div class="d-flex justify-content-end mt-4">
-              <button class="btn btn-primary w-100 custom-button  custom-button" type="button" (click)="ativarSuporteDiagnostico()">
-                Ativar
+              <button class="btn btn-primary w-100 custom-button  custom-button" type="button"
+                (click)="ativarSuporteDiagnostico()">
+                Consultar
               </button>
             </div>
           </div>
         </div>
 
+      </div>
     </div>
   </div>
-</div>

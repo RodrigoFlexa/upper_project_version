@@ -9,7 +9,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       <p>{{ message }}</p>
     </div>
     <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="true">OK</button>
+      <button mat-button (click)="okay()">OK</button>
+      <button mat-button (click)="activateDiagnosticSupport()">Ativar Suporte ao Diagnóstico</button>
     </div>
   `,
 })
@@ -18,4 +19,11 @@ export class SuccessDialogComponent {
     public dialogRef: MatDialogRef<SuccessDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public message: string
   ) {}
+
+  activateDiagnosticSupport() {
+    this.dialogRef.close(true);
+  }
+  okay() {
+    this.dialogRef.close(false);
+  }
 }

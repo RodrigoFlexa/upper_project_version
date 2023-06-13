@@ -25,8 +25,6 @@ import {
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-// declare var mdb: any;
-
 @Component({
   selector: 'app-cliente-anamnese',
   templateUrl: './cliente-anamnese.component.html',
@@ -49,8 +47,7 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   sintomaSelecionado: string = '';
   sintomaControl = new FormControl();
   filteredSintomas!: Observable<string[]>;
-  sintomas_sugestoes: string[] = ['Febre', 'Letargia', 'Tosse', 'Espirros', 'Vômito', 'Diarreia', 'Perda de apetite', 'Sede excessiva', 'Coceira', 'Perda de pelos', 'Dificuldade para respirar', 'Manqueira', 'Inchaço', 'Desidratação', 'Dor abdominal', 'Dor ao urinar', 'Dor nas articulações', 'Problemas de pele', 'Inquietação', 'Perda de peso'];
-
+  sintomas_sugestoes: string[] = ['dificuldade para comer', 'mudança de hábitos alimentares', 'gengivas em sangue', 'hálito com odor forte', 'mudança de comportamento', 'perda de dentes', 'febre', 'mastigar apenas num lado da boca', 'perda de peso', 'convulsões', 'úlceras no focinho', 'ganho de peso', 'dificuldade de engolir', 'edema', 'apatia', 'sangramento na pele', 'secreções oculares', 'salivação abundante', 'secreções nasais', 'aumento do volume de urina', 'prostração', 'espirros', 'diarreia', 'falta de coordenação', 'perda de apetite', 'rigidez nos músculos', 'desmaio', 'fraqueza', 'dificuldade em respirar', 'isolamento', 'urina escura', 'aumento da ingestão de água', 'espasmos musculares', 'úlceras bucais', 'úlceras na boca', 'diarreia sanguinolenta', 'desidratação', 'tosse', 'mau hálito', 'saliva com sangue', 'fotofobia', 'tremores', 'vômito', 'inquietação', 'agressividade', 'dentes fraturados', 'anemia', 'tiques nervosos', 'paralisia']
   private _filterSintomas(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.sintomas_sugestoes.filter((sintoma: string) =>
@@ -65,8 +62,20 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   cirurgiasAnteriores: string[] = [];
   cirurgiaSelecionada: string = '';
 
+
+  @ViewChild('doencasAuto') doencasMatAutocomplete: MatAutocomplete | undefined;
+
   doencasPrevias: string[] = [];
   doencaPreviaSelecionada: string = '';
+  doencasControl = new FormControl();
+  filteredDoencas!: Observable<string[]>;
+  doencas_sugestoes: string[] = ['Parvovirose', 'Cinomose', 'Leptospirose', 'Raiva', 'Doença periodontal', 'insuficiencia renal', 'Giardía', 'doença do carrapato', 'Doença cardíaca']
+  private _filterDoencas(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.doencas_sugestoes.filter((doenca: string) =>
+      doenca.toLowerCase().includes(filterValue)
+    );
+  }
 
   medicamentosEmUso: string[] = [];
   medicamentoSelecionado: string = '';
@@ -86,7 +95,7 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     private service: ClientesService,
     private anamneseService: AnamneseService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     if (history.state && history.state.cliente) {
@@ -100,6 +109,11 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     this.filteredSintomas = this.sintomaControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filterSintomas(value))
+    );
+
+    this.filteredDoencas = this.doencasControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filterDoencas(value))
     );
   }
 
@@ -151,6 +165,19 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     }
   }
 
+  openSuccessDialog(message: string): void {
+    const dialogRef = this.dialog.open(SuccessDialogComponent, {
+      width: '400px',
+      data: message,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+            this.ativarSuporteDiagnostico();
+     }
+    });
+  }
+
   createPieChart(ctx: CanvasRenderingContext2D): void {
     const options: ChartOptions<'pie'> = {
       plugins: {
@@ -187,49 +214,42 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     );
   }
 
-  openSuccessDialog(message: string): void {
-    this.dialog.open(SuccessDialogComponent, {
-      width: '400px',
-      data: message,
-    });
-  }
-
   cadastrarAnamnese() {
-    if(this.fichaAnamnesePreenchida()){
+    if (this.fichaAnamnesePreenchida()) {
       // E assim por diante para as outras listas suspensas
-    const motivos_str = this.motivos.join(' ');
-    const sintomas_str = this.sintomasAdicionados.join(' ');
-    const cirurgias_str = this.cirurgiasAnteriores.join(' ');
-    const doencas_str = this.doencasPrevias.join(' ');
-    const medicamentos_str = this.medicamentosEmUso.join(' ');
-    const comportamentos_str = this.comportamentos.join(' ');
-    const reproducao_str = this.reproducao.join(' ');
-    const viagens_str = this.viagens.join(' ');
+      const motivos_str = this.motivos.join(' ');
+      const sintomas_str = this.sintomasAdicionados.join(' ');
+      const cirurgias_str = this.cirurgiasAnteriores.join(' ');
+      const doencas_str = this.doencasPrevias.join(' ');
+      const medicamentos_str = this.medicamentosEmUso.join(' ');
+      const comportamentos_str = this.comportamentos.join(' ');
+      const reproducao_str = this.reproducao.join(' ');
+      const viagens_str = this.viagens.join(' ');
 
-    const anamnese: Anamnese = {
-      motivoDaConsulta: motivos_str,
-      sintomas: sintomas_str,
-      cirurgias: cirurgias_str,
-      doencas: doencas_str,
-      medicamentos: medicamentos_str,
-      comportamento: comportamentos_str,
-      reproducao: reproducao_str,
-      viagem: viagens_str,
-      dataCriacao: format(new Date(), 'dd/MM/yyyy'),
-      pet_id: this.cliente.id,
-    };
+      const anamnese: Anamnese = {
+        motivoDaConsulta: motivos_str,
+        sintomas: sintomas_str,
+        cirurgias: cirurgias_str,
+        doencas: doencas_str,
+        medicamentos: medicamentos_str,
+        comportamento: comportamentos_str,
+        reproducao: reproducao_str,
+        viagem: viagens_str,
+        dataCriacao: format(new Date(), 'dd/MM/yyyy'),
+        pet_id: this.cliente.id,
+      };
 
-    this.anamneseService.cadastrarAnamnese(this.id, anamnese).subscribe(
-      (response) => {
-        console.log('Anamnese cadastrada com sucesso', response);
-        this.openSuccessDialog('Anamnese cadastrada com sucesso!');
-        this.getAnamnesesByPetId(this.id);
-      },
-      (error) => {
-        console.error('Erro ao cadastrar anamnese', error);
-      }
-    );
-    }else{
+      this.anamneseService.cadastrarAnamnese(this.id, anamnese).subscribe(
+        (response) => {
+          console.log('Anamnese cadastrada com sucesso', response);
+          this.openSuccessDialog('Anamnese cadastrada com sucesso!');
+          this.getAnamnesesByPetId(this.id);
+        },
+        (error) => {
+          console.error('Erro ao cadastrar anamnese', error);
+        }
+      );
+    } else {
       alert(
         'Por favor, preencha a ficha de anamnese por completo'
       );
@@ -240,7 +260,7 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/cliente', cliente.id], { state: { cliente } });
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() { }
 
   adicionarSintoma(): void {
     if (this.sintomaSelecionado) {

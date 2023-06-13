@@ -5,7 +5,7 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   activeScreen: string | undefined;
 
   constructor(private router: Router) {
@@ -14,8 +14,5 @@ export class SidebarComponent implements OnInit {
         this.activeScreen = event.url;
       }
     });
-  }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 }

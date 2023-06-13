@@ -40,7 +40,7 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
   }
 
   atendimento(cliente: User) {
-    this.router.navigate(['/cliente', cliente.id], { state: { cliente } });
+    this.router.navigate(['/cliente', cliente.id]);
   }
 
   ngOnInit(): void {

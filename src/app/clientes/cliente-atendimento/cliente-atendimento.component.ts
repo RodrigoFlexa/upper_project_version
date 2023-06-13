@@ -1,9 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../user';
-
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { ClientesService } from 'src/app/clientes.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-cliente-atendimento',
@@ -18,9 +17,6 @@ export class ClienteAtendimentoComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute, private router: Router, private service: ClientesService) { }
 
   async ngOnInit():  Promise<void>{
-    if (history.state && history.state.cliente) {
-      this.cliente = history.state.cliente;
-    }
     const par : string =  this.route.snapshot.paramMap.get('id') as string;
     this.id  =  parseInt(par);
     await this.getClienteById(this.id);
