@@ -195,10 +195,8 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   }
 
   cadastrarAnamnese() {
-    console.log('Motivos:', this.motivos);
-    console.log('Sintomas:', this.sintomasAdicionados);
-    console.log('Cirurgias anteriores:', this.cirurgiasAnteriores);
-    // E assim por diante para as outras listas suspensas
+    if(this.fichaAnamnesePreenchida()){
+      // E assim por diante para as outras listas suspensas
     const motivos_str = this.motivos.join(' ');
     const sintomas_str = this.sintomasAdicionados.join(' ');
     const cirurgias_str = this.cirurgiasAnteriores.join(' ');
@@ -221,9 +219,6 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       pet_id: this.cliente.id,
     };
 
-    console.log('Cadastrando');
-    console.log(motivos_str);
-    console.log(anamnese.dataCriacao);
     this.anamneseService.cadastrarAnamnese(this.id, anamnese).subscribe(
       (response) => {
         console.log('Anamnese cadastrada com sucesso', response);
@@ -234,6 +229,11 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
         console.error('Erro ao cadastrar anamnese', error);
       }
     );
+    }else{
+      alert(
+        'Por favor, preencha a ficha de anamnese por completo'
+      );
+    }
   }
 
   voltarPraatendimento(cliente: User) {

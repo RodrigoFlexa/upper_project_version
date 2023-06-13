@@ -20,18 +20,30 @@
 }
 
 .custom-card-header {
-  background-color: #0099CC;
+  background-color: #3466AA;
   color: #FFFFFF;
   text-align: left;
 }
 
 .custom-card-header-2 {
-  background-color: #0099CC;
+  background-color: #3466AA;
   color: #FFFFFF;
   text-align: center;
 }
 
+
 .custom-button {
-  background-color: #66CCCC;
+  background-color: #00b4d8;
   color: #FFFFFF;
 }
+
+.custom-delete-button {
+  background-color: #FF6666;
+  color: #FFFFFF;
+}
+
+.custom-edit-button {
+  background-color: #82B7DC;
+  color: #FFFFFF;
+}
+
