@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 import { MatButtonModule } from '@angular/material/button';
+import { ShowContaComponent } from './show-conta/show-conta.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatButtonModule } from '@angular/material/button';
     ClienteAnamneseComponent,
     ClientesAddComponent,
     ConfirmDialogComponent,
-    SuccessDialogComponent
+    SuccessDialogComponent,
+    ShowContaComponent
   ],
   imports: [
     CommonModule,

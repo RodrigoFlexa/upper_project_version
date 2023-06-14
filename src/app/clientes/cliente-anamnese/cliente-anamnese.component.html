@@ -1,4 +1,4 @@
-  <!-- Main Content -->
+  <!--Header-->
 <div class="d-flex justify-content-between align-items-center mt-4">
   <h1>Anamnese</h1>
 
@@ -8,10 +8,9 @@
 
 </div>
 
+<!-- <div class="row"> 
 
-<div class="row">
-
-  <!-- <div class="col-xl-12 col-md-6">
+  <div class="col-xl-12 col-md-6">
     <div class="card mb-3">
       <div class="card-header custom-card-header-2">
         Informações do Pet
@@ -34,9 +33,9 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div> 
 
-  <!-- <div class="col-xl-4 col-md-6">
+   <div class="col-xl-4 col-md-6">
     <div class="card mb-3" [ngClass]="{'chart-card': chartCardActivated}">
       <div class="card-header custom-card-header-2">
         Suporte ao diagnóstico
@@ -56,17 +55,11 @@
         </div>
       </div>
     </div>
-  </div> -->
-
-  
-</div>
-
-  
-
-
+  </div> 
+</div> -->
 
 <div class="row">
-
+    <!-- Formulário -->
     <div class="col-md-8 d-flex flex-column">
     <div class="card">
       <div class="card-body">
@@ -352,7 +345,7 @@
 
         <div class="d-flex justify-content-between">
 
-          <button class="btn btn-primary custom-button-consulta" type="button" (click)="cadastrarAnamnese()">
+          <button class="btn btn-primary custom-button-consulta" type="button" (click)="ativarSuporteDiagnostico()">
             Consultar suporte ao Dianóstico
           </button>
 
@@ -366,15 +359,16 @@
       </div>
     </div>
 
-  </div>
+    </div>
+    <!--Fim do Formulário -->
 
-  <!-- Coluna Fixa à Direita -->
+  <!-- Coluna à Direita -->
   <div class="col-md-4">
     
     <div class="card h-100">
       <div class="card-body text-center">
 
-        <!-- <div class="card mb-3">
+        <div class="card mb-3">
           <div class="card-header custom-card-header-2">
             Informações do Pet
           </div>
@@ -395,48 +389,34 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
 
-        <div class="container py-5">
-          <div class="row">
-            <div class="col-md-12">
-              <div id="content">
-                <h2 class="timeline-title">Histórico</h2> <!-- Add the timeline title -->
-                <ul class="timeline-1 text-black">
-                  <li class="event" *ngFor="let anamnese of anamneses">
-                    <h4 class="mb-3" [innerText]="anamnese.dataCriacao"></h4>
-                    <p>{{ 'Motivo: \'' + anamnese.motivoDaConsulta + '\'' }}</p>
-                    <p>{{ 'Sintomas: ' + anamnese.sintomas }}</p> <!-- Add the sintomas field -->
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <!-- Section: Timeline -->
+        <div class="card">
+          <div class="card-header custom-card-header-2">
+            Histórico
+          </div>
+          <div class="card-body">
+            <section class="py-5">
+              <ul class="timeline-with-icons">
+                <li class="timeline-item mb-5" *ngFor="let anamnese of anamneses">
+                  <span class="timeline-icon">
+                    <i class="fas fa-file-archive" style="color:#00bef1;"></i>
+                  </span>
+        
+                  <h5 class="fw-bold text-center">{{ anamnese.dataCriacao }}</h5>
+                  <p class="text-muted mb-2 fw-bold text-center">{{ anamnese.motivoDaConsulta }}</p>
+                  <p class="text-muted text-center">{{ anamnese.sintomas }}</p>
+                </li>
+              </ul>
+            </section>
           </div>
         </div>
         
         
-        <!-- <div class="card mb-3" [ngClass]="{'chart-card': chartCardActivated}">
-          <div class="card-header custom-card-header-2">
-            Suporte ao diagnóstico
-          </div>
-          <div class="card-body d-flex justify-content-center align-items-center" [hidden]="!chartCardActivated"
-            [ngClass]="{'expanded': chartCardActivated, 'not_expanded': !chartCardActivated}">
-            <div class="chart-container" [ngClass]="{'h-auto': chartCardActivated}">
-              <canvas id="myChart"></canvas>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="d-flex justify-content-end mt-4">
-              <button class="btn btn-primary w-100 custom-button  custom-button" type="button"
-                (click)="ativarSuporteDiagnostico()">
-                Consultar
-              </button>
-            </div>
-          </div>
-        </div> -->
-        
-        
       
+<!-- Section: Timeline -->
+        
 
       </div>
     </div>

@@ -32,13 +32,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
       datasets: [{
         label: 'Faturamento Mensal',
         data: [10000, 20000, 30000, 25000, 35000, 50000, 40000],
-        backgroundColor: 'rgba(78, 115, 223, 0.05)',
-        borderColor: 'rgba(78, 115, 223, 1)',
+        backgroundColor: '#f52200',
+        borderColor: '#f52200',
         borderWidth: 1
       }]
     };
-
-    // Bar Chart Data
+    
     const barChartData = {
       labels: ['Gripe Canina', 'Dermatite Alérgica', 'Otite', 'Verminose', 'Fratura Óssea'],
       datasets: [
@@ -46,23 +45,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
           label: 'Doenças Mais Comuns',
           data: [15, 10, 8, 12, 5], // Contagem de diagnósticos de cada doença
           backgroundColor: [
-            'rgba(54, 162, 235, 0.5)',
-            'rgba(255, 99, 132, 0.5)',
-            'rgba(75, 192, 192, 0.5)',
-            'rgba(255, 205, 86, 0.5)',
-            'rgba(153, 102, 255, 0.5)'
+            '#f05ebb',
+            '#8ac402',
+            '#0089e3',
+            '#2f0549',
+            '#f52200'
           ],
           borderColor: [
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 99, 132, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(255, 205, 86, 1)',
-            'rgba(153, 102, 255, 1)'
+            '#f05ebb',
+            '#8ac402',
+            '#0089e3',
+            '#2f0549',
+            '#f52200'
           ],
           borderWidth: 1
         }
       ]
     };
+    
+    
 
     // Criar instâncias dos gráficos somente se os contextos estiverem disponíveis
     this.areaChart = new Chart(areaChartCtx, {

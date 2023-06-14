@@ -1,11 +1,5 @@
 import { Anamnese } from './../anamnese';
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import {Component,OnInit,AfterViewInit,ViewChild, ElementRef,} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientesService } from 'src/app/clientes.service';
 import { User } from '../user';
@@ -18,12 +12,10 @@ import { format } from 'date-fns';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import {
-  MatAutocomplete,
-  MatAutocompleteModule,
-} from '@angular/material/autocomplete';
+import {MatAutocomplete,MatAutocompleteModule,} from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ShowContaComponent } from '../show-conta/show-conta.component';
 
 @Component({
   selector: 'app-cliente-anamnese',
@@ -94,7 +86,8 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     private router: Router,
     private service: ClientesService,
     private anamneseService: AnamneseService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private conta_dialog: MatDialog
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -116,7 +109,30 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       map((value) => this._filterDoencas(value))
     );
   }
-
+  
+  openDialog(): void {
+    const data = {
+      motivos: this.motivos.join(' '),
+      sintomas: this.sintomasAdicionados.join(' '),
+      cirurgias: this.cirurgiasAnteriores.join(' '),
+      doencas: this.doencasPrevias.join(' '),
+      medicamentos: this.medicamentosEmUso.join(' '),
+      comportamentos: this.comportamentos.join(' '),
+      reproducao: this.reproducao.join(' '),
+      viagens: this.viagens.join(' ')
+    };
+  
+    const dialogRef = this.dialog.open(ShowContaComponent, {
+      width: '800px',
+      height: '500px',
+      data: data
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      // Lógica a ser executada após o fechamento do diálogo, se necessário
+    });
+  }
+  
   async getClienteById(MeuId: number) {
     this.service.getClienteById(MeuId).subscribe(
       (resposta: User) => {
@@ -141,34 +157,33 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   }
 
   ativarSuporteDiagnostico() {
+
     const preenchido = this.fichaAnamnesePreenchida();
-    if (true) {
-      this.suporteDiagnosticoAtivado = true;
-      this.chartCardActivated = true; // Ativar a classe chart-card
-      if (!this.chartCreated) {
-        const canvas = document.getElementById('myChart') as HTMLCanvasElement;
-        const ctx = canvas.getContext('2d');
-        if (ctx !== null) {
-          // Verificar se o contexto é diferente de null
-          this.createPieChart(ctx);
-          this.chartCreated = true;
-        } else {
-          console.error(
-            'Failed to get the 2D rendering context for the canvas element'
-          );
-        }
-      }
-    } else {
+    if(preenchido){
+      this.openDialog()
+    }else {
       alert(
-        'Por favor, preencha a ficha de anamnese por completo antes de ativar o suporte ao diagnóstico.'
+        'Por favor, preencha a ficha de anamnese por completo'
       );
     }
   }
 
   openSuccessDialog(message: string): void {
+    const data = {
+      motivos: this.motivos.join(' '),
+      sintomas: this.sintomasAdicionados.join(' '),
+      cirurgias: this.cirurgiasAnteriores.join(' '),
+      doencas: this.doencasPrevias.join(' '),
+      medicamentos: this.medicamentosEmUso.join(' '),
+      comportamentos: this.comportamentos.join(' '),
+      reproducao: this.reproducao.join(' '),
+      viagens: this.viagens.join(' '),
+      message: message
+    };
+
     const dialogRef = this.dialog.open(SuccessDialogComponent, {
       width: '400px',
-      data: message,
+      data: data,
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -178,28 +193,6 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     });
   }
 
-  createPieChart(ctx: CanvasRenderingContext2D): void {
-    const options: ChartOptions<'pie'> = {
-      plugins: {
-        legend: {
-          position: 'right',
-        },
-      },
-    };
-    new Chart(ctx, {
-      type: 'pie',
-      data: {
-        datasets: [
-          {
-            data: [10, 20, 30],
-            backgroundColor: ['red', 'yellow', 'blue'],
-          },
-        ],
-        labels: ['Red', 'Yellow', 'Blue'],
-      },
-      options: options,
-    });
-  }
 
   fichaAnamnesePreenchida(): boolean {
     return (

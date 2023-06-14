@@ -15,6 +15,54 @@ export class ClientesAddComponent implements OnInit {
   petForm: FormGroup;
   clienteForm: FormGroup;
   isLinear = true;
+  racasCachorros: string[] = [
+    "Akita",
+    "Bulldog Francês",
+    "Bulldog Inglês",
+    "Beagle",
+    "Boxer",
+    "Border Collie",
+    "Chihuahua",
+    "Cocker Spaniel",
+    "Dálmata",
+    "Doberman",
+    "Golden Retriever",
+    "Labrador Retriever",
+    "Husky Siberiano",
+    "Pastor Alemão",
+    "Poodle",
+    "Pug",
+    "Rottweiler",
+    "Schnauzer",
+    "Shar-Pei",
+    "Shih Tzu",
+    "Yorkshire Terrier",
+  ];
+  racasGatos: string[] = [
+    "Abissínio",
+    "Bengal",
+    "British Shorthair",
+    "Burmese",
+    "Maine Coon",
+    "Persa",
+    "Ragdoll",
+    "Siamês",
+    "Sphynx",
+    "Scottish Fold",
+    "Angorá",
+    "Siberiano",
+    "Himalaio",
+    "Norueguês da Floresta",
+    "Russo Azul",
+    "Manx",
+    "Somali",
+    "Siamese",
+    "Tonquinês",
+    "Birmanês",
+    // Adicione mais raças de gatos aqui...
+  ];
+
+
 
   constructor(
     private router: Router,
@@ -22,14 +70,18 @@ export class ClientesAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ClientesAddComponent>
   ) {
+    
+
+
     this.petForm = this.formBuilder.group({
       nomePet: ['', Validators.required],
       idade: ['', Validators.required],
       peso: ['', Validators.required],
-      especie: ['', Validators.required],
-      raca: ['', Validators.required],
+      especie: [''],
+      raca: [''],
       sexo: ['', Validators.required]
     });
+    
 
     this.clienteForm = this.formBuilder.group({
       nome: ['', Validators.required],
@@ -41,6 +93,8 @@ export class ClientesAddComponent implements OnInit {
       numero: ['', Validators.required]
     });
   }
+
+  
 
   ngOnInit(): void {
   }

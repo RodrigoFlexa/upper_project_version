@@ -84,6 +84,7 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  color: #2B3674;
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
@@ -572,12 +573,14 @@ pre code {
   }
 }
 
+
 .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
   width: 100%;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
   margin-right: auto;
   margin-left: auto;
+  background-color: #F4F7FE;
 }
 
 @media (min-width: 576px) {
@@ -3972,6 +3975,7 @@ input[type=button].btn-block {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  
 }
 .navbar .container,
 .navbar .container-fluid,
@@ -6131,6 +6135,7 @@ button.bg-danger:focus {
 
 .bg-light {
   background-color: #f8f9fa !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 a.bg-light:hover, a.bg-light:focus,
@@ -6148,6 +6153,7 @@ button.bg-dark:hover,
 button.bg-dark:focus {
   background-color: #1d2124 !important;
 }
+
 
 .bg-white {
   background-color: #fff !important;
@@ -10016,6 +10022,7 @@ body {
   flex-grow: 1;
   min-height: calc(100vh - 56px);
   margin-left: -225px;
+  background-color: #F4F7FE;;
 }
 
 .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
@@ -10108,6 +10115,7 @@ body {
 }
 .sb-topnav.navbar-dark #sidebarToggle {
   color: rgba(255, 255, 255, 0.5);
+  
 }
 .sb-topnav.navbar-light #sidebarToggle {
   color: #212529;
@@ -10138,9 +10146,11 @@ body {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   position: relative;
+  font-size: inherit;
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon {
   font-size: 0.9rem;
+  font-size: inherit;
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-sidenav-collapse-arrow {
   display: inline-block;
@@ -10160,29 +10170,36 @@ body {
 }
 
 .sb-sidenav-dark {
-  background-color: #212529;
+  background-color: #FFFFFF;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   color: rgba(255, 255, 255, 0.5);
 }
+
+
+
+
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
-  color: rgba(255, 255, 255, 0.25);
+  color: #A3AED0;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: #A3AED0;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
-  color: rgba(255, 255, 255, 0.25);
+  color: #A3AED0;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
-  color: rgba(255, 255, 255, 0.25);
+  color: #A3AED0;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
-  color: #fff;
+  color: #1B2559;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
-  color: #fff;
+  color: #1B2559;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
-  color: #fff;
+  
+  color: #1B2559;
 }
 .sb-sidenav-dark .sb-sidenav-footer {
   background-color: #343a40;
