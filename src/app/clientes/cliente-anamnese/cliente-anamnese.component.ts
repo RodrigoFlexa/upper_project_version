@@ -142,7 +142,7 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
 
   ativarSuporteDiagnostico() {
     const preenchido = this.fichaAnamnesePreenchida();
-    if (preenchido) {
+    if (true) {
       this.suporteDiagnosticoAtivado = true;
       this.chartCardActivated = true; // Ativar a classe chart-card
       if (!this.chartCreated) {
