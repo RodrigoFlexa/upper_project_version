@@ -1,7 +1,7 @@
-.card {
+/* .card-button {
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .card-header {
   background-color: #f8f9fa;
@@ -34,9 +34,12 @@
 }
 
 .custom-card-header {
-  background-color: #820ad1;
-  color: #FFFFFF;
+  background-color: #ffffff;
+  color: #000000;
   text-align: left;
+  font-family: "Arial", sans-serif;
+  font-size:18px;
+  font-weight: bold;
 
 }
 
@@ -57,16 +60,24 @@
   color: #FFFFFF;
 }
 
-
-.custom-delete-button {
-  background-color: #FF6666;
-  color: #FFFFFF;
+.custom-card-header-3 {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: left;
+  font-family: "Arial", sans-serif;
+  font-size:18px;
+  font-weight: bold;
 }
 
-.custom-edit-button {
-  background-color: #82B7DC;
-  color: #FFFFFF;
+.no-border-header {
+  border-bottom: none;
 }
+
+
+
+
+
+
 
 /* Responsiveness */
 @media (max-width: 576px) {
@@ -95,3 +106,30 @@
 
 
 
+
+
+
+.card-as-button {
+  display: inline-block;
+  padding: 10px 20px;
+  /* border: 1px solid #000000;  */
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-as-button:hover {
+  background-color: #bdf3ff;
+}
+
+/* .card-as-button:focus {
+  outline: none;
+} */
+
+.card-as-button:active {
+  background-color: #bdf3ff;
+}

@@ -32,9 +32,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       datasets: [{
         label: 'Faturamento Mensal',
         data: [10000, 20000, 30000, 25000, 35000, 50000, 40000],
-        backgroundColor: '#b8e300',
-        borderColor: '#b8e300  ',
-        borderWidth: 1
+        backgroundColor: '#820ad1',
+        borderColor: '#820ad1',
+        borderWidth: 1,
+        pointBackgroundColor: '#00bef1'
       }]
     };
 
@@ -45,18 +46,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
           label: 'Doenças Mais Comuns',
           data: [15, 10, 8, 12, 5], // Contagem de diagnósticos de cada doença
           backgroundColor: [
-            '#6fccf5',
-            '#6fccf5',
-            '#6fccf5',
-            '#6fccf5',
-            '#6fccf5'
+            '#820ad1',
+            '#820ad1',
+            '#820ad1',
+            '#820ad1',
+            '#820ad1'
           ],
           borderColor: [
-            '#6fccf5',
-            '#6fccf5',
-            '#6fccf5',
-            '#6fccf5',
-            '#6fccf5'
+            '#820ad1',
+            '#820ad1',
+            '#820ad1',
+            '#820ad1',
+            '#820ad1'
           ],
           borderWidth: 1
         }

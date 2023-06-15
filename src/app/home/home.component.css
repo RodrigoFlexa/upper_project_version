@@ -1,21 +1,16 @@
-.custom-card-header {
-  background-color: #3466AA;
-  color: #FFFFFF;
-  text-align: left;
-}
-
-.custom-button {
-  background-color: #00b4d8;
-  color: #FFFFFF;
-}
-
-
-
 .custom-table tbody tr:nth-child(odd) {
-  background-color: #e3e3e3;
+  background-color: #E3F4F4;
 }
 
 .custom-card-header-3 {
-  background-color: #820ad1;
-  color: #FFFFFF;
+  background-color: #ffffff;
+  color: #000000;
+
+  font-family: "Arial", sans-serif;
+  font-size:18px;
+  font-weight: bold;
+}
+
+.no-border-header {
+  border-bottom: none;
 }

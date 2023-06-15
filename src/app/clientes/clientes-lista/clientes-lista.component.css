@@ -6,7 +6,6 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .dialog-container h2 {
@@ -44,16 +43,6 @@
   margin: 0 0.5rem;
 }
 
-.custom-card-header {
-  background-color: #3466AA;
-  color: #FFFFFF;
-  text-align: left;
-}
-
-.custom-card-header-3 {
-  background-color: #820ad1;
-  color: #FFFFFF;
-}
 
 .custom-button {
   background-color: #820ad1;
@@ -61,16 +50,32 @@
 }
 
 .custom-delete-button {
-  background-color: #f52200;
+  background-color: #ff7363;
   color: #FFFFFF;
 }
 
 .custom-edit-button {
-  background-color: #820ad1;
+  background-color: #00bef1;
   color: #FFFFFF;
+  border: none;
 }
 
 .custom-table tbody tr:nth-child(odd) {
-  background-color: #f2f2f2;
+  background-color: #E3F4F4;
+}
+.custom-table-2 tbody tr:hover {
+  background-color: #bdf3ff; /* Cor de fundo do hover */
 }
 
+.custom-card-header-3 {
+  background-color: #ffffff;
+  color: #000000;
+
+  font-family: "Arial", sans-serif;
+  font-size:18px;
+  font-weight: bold;
+}
+
+.no-border-header {
+  border-bottom: none;
+}

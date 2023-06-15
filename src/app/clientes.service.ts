@@ -7,7 +7,7 @@ import { User } from './clientes/user';
   providedIn: 'root'
 })
 export class ClientesService {
-  private apiURL = 'http://localhost:8080/api/users'; // URL completa da API
+  private apiURL = 'https://laikapet.sinopeoficial.com.br/api/users'; // URL completa da API
 
 
   constructor(private http: HttpClient) { }
@@ -26,7 +26,7 @@ export class ClientesService {
   }
 
   deletarCliente(id: number): Observable<void> {
-    const url = `${this.apiURL}/${id}`;
-    return this.http.delete<void>(url);
+    const url = `${this.apiURL}/delete/${id}`;
+    return this.http.get<void>(url);
   }
 }

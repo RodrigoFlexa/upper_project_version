@@ -70,7 +70,7 @@ export class ClientesAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ClientesAddComponent>
   ) {
-    
+
 
 
     this.petForm = this.formBuilder.group({
@@ -81,7 +81,7 @@ export class ClientesAddComponent implements OnInit {
       raca: [''],
       sexo: ['', Validators.required]
     });
-    
+
 
     this.clienteForm = this.formBuilder.group({
       nome: ['', Validators.required],
@@ -94,7 +94,7 @@ export class ClientesAddComponent implements OnInit {
     });
   }
 
-  
+
 
   ngOnInit(): void {
   }
@@ -126,7 +126,7 @@ export class ClientesAddComponent implements OnInit {
         cidade: clienteFormData.cidade,
         cep: clienteFormData.cep,
         cpf: clienteFormData.cpf,
-        casa: clienteFormData.casa,
+        casa: clienteFormData.numero,
         pet: pet
       };
 

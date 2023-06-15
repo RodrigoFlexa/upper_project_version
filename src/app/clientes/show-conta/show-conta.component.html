@@ -1,67 +1,68 @@
 <div class="card mb-3">
-    <div class="card-header">
-        <button class="btn btn-close" (click)="closeDialog()">
-            <i class="fa fa-times" style="color: rgb(0, 0, 0);"></i>
-          </button>
-    </div>
-    <br>
-    <div class="card-body">
-        <div class="card mb-3">
-            <div class="card-header custom-card-header">
-                <h4 class="text-white">Anamnese</h4>
+  <div class="card-header bg-white no-border-header">
+    <button class="btn btn-close" (click)="closeDialog()">
+      <i class="fa fa-times" style="color: rgb(0, 0, 0);"></i>
+    </button>
+  </div>
+
+  <br>
+  <div class="card-body">
+
+    <div class="card mb-3">
+      <div class="card-header custom-card-header font-weight-bold ">
+        Anamnese
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="anamnese-info">
+              <div class="anamnese-column">
+                <p><strong>Motivos:</strong> {{ data.motivos }}</p>
+                <p><strong>Sintomas:</strong> {{ data.sintomas }}</p>
+                <p><strong>Cirurgias anteriores:</strong> {{ data.cirurgias }}</p>
+                <p><strong>Doenças prévias:</strong> {{ data.doencas }}</p>
+              </div>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="anamnese-info">
-                            <div class="anamnese-column">
-                                <p><strong>Motivos:</strong> {{ data.motivos }}</p>
-                                <p><strong>Sintomas:</strong> {{ data.sintomas }}</p>
-                                <p><strong>Cirurgias anteriores:</strong> {{ data.cirurgias }}</p>
-                                <p><strong>Doenças prévias:</strong> {{ data.doencas }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="anamnese-info">
-                            <div class="anamnese-column">
-                                <p><strong>Medicamentos em uso:</strong> {{ data.medicamentos }}</p>
-                                <p><strong>Comportamentos:</strong> {{ data.comportamentos }}</p>
-                                <p><strong>Reprodução:</strong> {{ data.reproducao }}</p>
-                                <p><strong>Viagens:</strong> {{ data.viagens }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="col-md-6">
+            <div class="anamnese-info">
+              <div class="anamnese-column">
+                <p><strong>Medicamentos em uso:</strong> {{ data.medicamentos }}</p>
+                <p><strong>Comportamentos:</strong> {{ data.comportamentos }}</p>
+                <p><strong>Reprodução:</strong> {{ data.reproducao }}</p>
+                <p><strong>Viagens:</strong> {{ data.viagens }}</p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="card mb-3">
-            <div class="card-header custom-card-header text-white">
-                <h4 class=" text-white">Possíveis diagnósticos</h4>
+    <div class="card mb-3">
+      <div class="card-header custom-card-header font-weight-bold">
+        Possíveis diagnósticos
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="chart-container">
+              <canvas id="myChart"></canvas>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="chart-container">
-                            <canvas id="myChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="chart-container">
-                            <canvas id="barChart"></canvas>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="col-md-6">
+            <div class="chart-container">
+              <canvas id="barChart"></canvas>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="card-footer d-flex justify-content-end">
-        <button class="btn custom-button">
-            <i class='fa fa-file'></i> Salvar
-        </button>
-    </div>
-
+  <div class="card-footer d-flex justify-content-end">
+    <button class="btn custom-button">
+      <i class='fa fa-file'></i> Salvar
+    </button>
+  </div>
 
 </div>

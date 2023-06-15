@@ -19,16 +19,36 @@
   height: 10px; /* Defina a altura desejada para o body do card quando não estiver expandido */
 }
 
-.custom-card-header {
+/* .custom-card-header {
   background-color: #f4f4f4;
   color: #000000;
   text-align: left;
 
+} */
+
+.custom-card-header {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: left;
+  font-family: "Arial", sans-serif;
+  font-size:18px;
+  font-weight: bold;
+}
+
+
+
+
+.no-border-header {
+  border-bottom: none;
 }
 
 .custom-card-header-2 {
   background-color: #820ad1;
-  color: #FFFFFF;
+  color: #ffffff;
+  text-align: left;
+  font-family: "Arial", sans-serif;
+  font-size:18px;
+  font-weight: bold;
   text-align: center;
 }
 
@@ -38,24 +58,25 @@
   color: #FFFFFF;
 }
 
-
-.custom-button-consulta {
-  background-color: #bd0fea;
+.custom-button-listas {
+  background-color: #0089e3;
   color: #FFFFFF;
 }
 
-.custom-delete-button {
-  background-color: #FF6666;
+
+.custom-button-consulta {
+  background-color: #820ad1;
   color: #FFFFFF;
 }
 
 .custom-edit-button {
-  background-color: #82B7DC;
+  background-color: #820ad1;
   color: #FFFFFF;
+  border: none;
 }
 
 .custom-icon {
-  background-color: #82B7DC;
+  background-color: #0089e3;
   color: #a7a7a7;
 }
 
@@ -66,7 +87,7 @@
 
 
 .timeline-with-icons {
-  border-left: 1px solid #bd0fea;
+  border-left: 1.5px solid #820ad1;
   position: relative;
   list-style: none;
 }
@@ -84,8 +105,8 @@
 
 .timeline-with-icons .timeline-icon {
   position: absolute;
-  left: -60px;
-  background-color: #f4f4f4;
+  left: -65px;
+  background-color: #E3F4F4;
   color: hsl(217, 88.8%, 35.1%);
   border-radius: 50%;
   height: 50px;
@@ -102,3 +123,53 @@
 .timeline-container {
   margin-left: 20px; /* Ajuste o valor da margem conforme necessário */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.timeline-title h3 {
+  position: relative;
+  display: inline-block;
+  padding: 0 15px;
+}
+
+/* .timeline-title h3:before,
+.timeline-title h3:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  border-top: 2px solid #000;
+}
+
+.timeline-title h3:before {
+  left: -100px;
+}
+
+.timeline-title h3:after {
+  right: -100px;
+}
+
+.timeline-title h3:before,
+.timeline-title h3:after {
+  transform: translateY(-50%);
+}
+
+.timeline-title h3:before {
+  margin-left: -10px;
+}
+
+.timeline-title h3:after {
+  margin-right: -10px;
+} */

@@ -16,6 +16,7 @@ import {MatAutocomplete,MatAutocompleteModule,} from '@angular/material/autocomp
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ShowContaComponent } from '../show-conta/show-conta.component';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-cliente-anamnese',
@@ -134,27 +135,24 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   }
 
   async getClienteById(MeuId: number) {
-    this.service.getClienteById(MeuId).subscribe(
-      (resposta: User) => {
-        this.cliente = resposta;
-      },
-      (error) => {
-        console.error('Erro ao obter o cliente:', error);
-      }
-    );
+    try {
+      const resposta: User = await firstValueFrom(this.service.getClienteById(MeuId));
+      this.cliente = resposta;
+    } catch (error) {
+      console.error('Erro ao obter o cliente:', error);
+    }
   }
 
   async getAnamnesesByPetId(id: number) {
-    this.anamneseService.getAnamnesesByPetId(id).subscribe(
-      (anamneses: Anamnese[]) => {
-        this.anamneses = anamneses;
-        console.log('Anamneses:', this.anamneses);
-      },
-      (error) => {
-        console.error('Erro ao obter as anamneses:', error);
-      }
-    );
+    try {
+      const anamneses: Anamnese[] = await firstValueFrom(this.anamneseService.getAnamnesesByPetId(id));
+      this.anamneses = anamneses;
+      console.log('Anamneses:', this.anamneses);
+    } catch (error) {
+      console.error('Erro ao obter as anamneses:', error);
+    }
   }
+
 
   ativarSuporteDiagnostico() {
 
@@ -188,8 +186,11 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-            this.ativarSuporteDiagnostico();
-     }
+        this.ativarSuporteDiagnostico()
+      } else {
+        // O botão "OK" foi clicado
+      }
+
     });
   }
 

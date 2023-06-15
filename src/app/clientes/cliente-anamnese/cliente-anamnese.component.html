@@ -2,7 +2,7 @@
 <div class="d-flex justify-content-between align-items-center mt-4">
   <h1>Anamnese</h1>
 
-  <button class="btn btn-primary custom-button custom-button"
+  <button class="btn btn-primary custom-button "
     (click)="voltarPraatendimento(cliente)">
     <i class="fas fa-arrow-left"></i> Voltar
   </button>
@@ -66,7 +66,7 @@
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center mt-4">
           <h3>Formulário Anamnese</h3>
-          <button class="btn btn-primary custom-button" type="button">
+          <button class="btn btn-primary custom-edit-button" type="button">
             <i class="fas fa-pencil-alt"></i> Editar
           </button>
         </div>
@@ -76,7 +76,7 @@
 
         <!-- Formulário de Motivo da Consulta -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold">
+          <div class="card-header custom-card-header no-border-header font-weight-bold">
             <i class="fas fa-question"></i> Motivo da Consulta
           </div>
           <div class="card-body">
@@ -84,7 +84,7 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary custom-button btn-sm m-2"
+                    <button class="btn btn-primary custom-button-listas btn-sm m-2"
                       *ngFor="let motivo of motivos"
                       (click)="removerMotivo(motivo)">
                       <i class="fas fa-times me-1"></i> {{ motivo }}
@@ -113,7 +113,7 @@
 
         <!-- Formulário de Sintomas -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold">
+          <div class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-heartbeat"></i> Sintomas
           </div>
           <div class="card-body">
@@ -121,7 +121,7 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary custom-button btn-sm m-2"
+                    <button class="btn btn-primary custom-button-listas btn-sm m-2"
                       *ngFor="let sintoma of sintomasAdicionados"
                       (click)="removerSintoma(sintoma)">
                       <i class="fas fa-times me-1"></i> {{ sintoma }}
@@ -129,13 +129,15 @@
                   </div>
                 </div>
                 <div class="input-group mt-3">
+
                   <input type="text" class="form-control"
                     [(ngModel)]="sintomaSelecionado"
                     [formControl]="sintomaControl"
-                    placeholder="Digite os sintoma"
+                    placeholder="Digite os sintomas"
                     (keyup.enter)="adicionarSintoma()"
                     [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete">
+
                     <mat-option
                       *ngFor="let sugestao of filteredSintomas | async"
                       [value]="sugestao">
@@ -144,7 +146,7 @@
                   </mat-autocomplete>
 
                   <div class="input-group-append">
-                    <button class="btn btn-primary   custom-button"
+                    <button class="btn custom-button"
                       type="button" (click)="adicionarSintoma()">
                       <i class="fas fa-plus"></i> Adicionar
                     </button>
@@ -157,7 +159,7 @@
 
         <!-- Formulário de Cirurgias -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold">
+          <div class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-procedures"></i> Cirurgias Anteriores
           </div>
           <div class="card-body mb-4">
@@ -165,7 +167,7 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary   custom-button btn-sm m-2"
+                    <button class="btn btn-primary  custom-button-listas btn-sm m-2"
                       *ngFor="let cirurgia of cirurgiasAnteriores"
                       (click)="removerCirurgia(cirurgia)">
                       <i class="fas fa-times me-1"></i> {{ cirurgia }}
@@ -191,7 +193,7 @@
 
         <!-- Formulário de Doenças Prévias -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold">
+          <div class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-notes-medical"></i> Doenças Prévias
           </div>
           <div class="card-body mb-4">
@@ -199,7 +201,7 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary   custom-button btn-sm m-2"
+                    <button class="btn btn-primary   custom-button-listas btn-sm m-2"
                       *ngFor="let doenca of doencasPrevias"
                       (click)="removerDoencaPrevia(doenca)">
                       <i class="fas fa-times me-1"></i> {{ doenca }}
@@ -236,7 +238,7 @@
 
         <!-- Formulário de Medicamentos em Uso -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold">
+          <div class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-prescription-bottle"></i> Medicamentos em Uso
           </div>
           <div class="card-body mb-4">
@@ -244,7 +246,7 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary   custom-button btn-sm m-2"
+                    <button class="btn btn-primary custom-button-listas btn-sm m-2"
                       *ngFor="let medicamento of medicamentosEmUso"
                       (click)="removerMedicamentoEmUso(medicamento)">
                       <i class="fas fa-times me-1"></i> {{ medicamento }}
@@ -270,7 +272,7 @@
 
         <!-- Formulário de Comportamento -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold">
+          <div class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-paw"></i> Comportamento
           </div>
           <div class="card-body mb-4">
@@ -278,7 +280,7 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary   custom-button btn-sm m-2"
+                    <button class="btn btn-primary  custom-button-listas btn-sm m-2"
                       *ngFor="let comportamento of comportamentos"
                       (click)="removerComportamento(comportamento)">
                       <i class="fas fa-times me-1"></i> {{ comportamento }}
@@ -304,7 +306,7 @@
 
         <!-- Formulário de Reprodução -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold">
+          <div class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-venus-mars"></i> Reprodução
           </div>
           <div class="card-body mb-4">
@@ -312,7 +314,7 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary   custom-button btn-sm m-2"
+                    <button class="btn btn-primary custom-button-listas btn-sm m-2"
                       *ngFor="let reproducao of reproducao"
                       (click)="removerReproducao(reproducao)">
                       <i class="fas fa-times me-1"></i> {{ reproducao }}
@@ -338,7 +340,7 @@
 
         <!-- Formulário de Viagem -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold">
+          <div class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-suitcase-rolling"></i> Viagem
           </div>
           <div class="card-body mb-4">
@@ -346,7 +348,7 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary   custom-button btn-sm m-2"
+                    <button class="btn btn-primary custom-button-listas btn-sm m-2"
                       *ngFor="let viagem of viagens"
                       (click)="removerViagem(viagem)">
                       <i class="fas fa-times me-1"></i> {{ viagem }}
@@ -375,9 +377,10 @@
         <div class="d-flex justify-content-between">
 
           <button class="btn btn-primary custom-button-consulta" type="button"
-            (click)="ativarSuporteDiagnostico()">
-            Consultar suporte ao Dianóstico
-          </button>
+          style="visibility: hidden; pointer-events: none;"
+          (click)="ativarSuporteDiagnostico()">
+          Consultar suporte ao Diagnóstico
+        </button>
 
           <button class="btn btn-primary custom-button" type="button"
             (click)="cadastrarAnamnese()">
@@ -421,19 +424,19 @@
           </div>
         </div>
 
-
         <br>
         <div class="timeline-container">
-          <div class="timeline-title text-center">
-            <h3>Histórico</h3>
+          <div class="timeline-title text-center" style="display: flex; align-items: center;">
+            <hr style="border-top: 2px solid black; flex-grow: 1;">
+            <h3 style="margin: 0;">Histórico</h3>
+            <hr style="border-top: 2px solid black; flex-grow: 1;">
           </div>
           <section class="py-5">
             <ul class="timeline-with-icons">
               <li class="timeline-item mb-5" *ngFor="let anamnese of anamneses">
                 <span class="timeline-icon">
-                  <i class="fas fa-file-archive timeline-icon-size" style="color:#4c0677;"></i>
+                  <i class="fas fa-file-archive timeline-icon-size" style="color:#0089e3;"></i>
                 </span>
-
                 <h5 class="fw-bold">Data: {{ anamnese.dataCriacao }}</h5>
                 <p class="text-muted mb-2 fw-bold">Motivo Da Consulta: {{ anamnese.motivoDaConsulta }}</p>
                 <p class="text-muted">Sintomas: {{ anamnese.sintomas }}</p>
@@ -441,6 +444,8 @@
             </ul>
           </section>
         </div>
+
+
 
       </div>
     </div>

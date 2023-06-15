@@ -7,15 +7,16 @@ import { Anamnese } from './clientes/anamnese';
   providedIn: 'root'
 })
 export class AnamneseService {
-  private baseUrl = 'http://localhost:8080/anamneses/pets';
+  private baseUrl = 'https://laikapet.sinopeoficial.com.br/api/anamneses';
+
   constructor(private http: HttpClient) { }
 
   cadastrarAnamnese(id: number, anamnese: Anamnese):Observable<Anamnese>{
-    const url = `${this.baseUrl}/${id}`;
+    const url = `https://laikapet.sinopeoficial.com.br/api/anamneses/pets/${id}`;
     return this.http.post<Anamnese>(url, anamnese);
   }
   getAnamnesesByPetId(id: number): Observable<Anamnese[]> {
-    const url = `${this.baseUrl}/${id}/anamneses`;
+    const url = `https://laikapet.sinopeoficial.com.br/api/anamneses/pets/${id}/anamneses`;
     return this.http.get<Anamnese[]>(url);
   }
 }

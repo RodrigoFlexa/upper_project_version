@@ -84,7 +84,7 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #2B3674;
+  color: #000000;
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
@@ -580,7 +580,7 @@ pre code {
   padding-left: 0.75rem;
   margin-right: auto;
   margin-left: auto;
-  background-color: #ffffff;
+  background-color: #F4F7FE;
 }
 
 @media (min-width: 576px) {
@@ -10022,7 +10022,7 @@ body {
   flex-grow: 1;
   min-height: calc(100vh - 56px);
   margin-left: -225px;
-  background-color: #FFFFFF;;
+  background-color: #F4F7FE;;
 }
 
 .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
@@ -10170,12 +10170,16 @@ body {
 }
 
 .sb-sidenav-dark {
-  background-color: #ffffff;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
+  background-color:#FFFFFF;
+  /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0)); */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  color: rgba(255, 255, 255, 0.5);
+  /* color: rgba(255, 255, 255, 0.5); */
 }
 
+.logo-img {
+  width: 50px; /* Defina o tamanho desejado em pixels */
+  height: auto; /* Mantém a proporção original */
+}
 
 
 
@@ -10189,17 +10193,17 @@ body {
   color: #A3AED0;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
-  color: #2f0549;
+  color: #000000;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
-  color: #2f0549;
+  color: #000000;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
-  color: #2f0549;
+  color: #000000;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
 
-  color:#2f0549;
+  color:#000000;
 }
 .sb-sidenav-dark .sb-sidenav-footer {
   background-color: #343a40;

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClientesRoutingModule } from './clientes-routing.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientesListaComponent } from './clientes-lista/clientes-lista.component';
@@ -43,8 +44,9 @@ import { ShowContaComponent } from './show-conta/show-conta.component';
     MatAutocompleteModule,
     MatIconModule,
     MatGridListModule,
-    MatButtonModule
-  ],
+    MatButtonModule,
+    MatProgressSpinnerModule
+    ],
   exports: [
 
     ClientesListaComponent
