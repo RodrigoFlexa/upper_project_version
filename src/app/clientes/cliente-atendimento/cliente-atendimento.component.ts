@@ -41,8 +41,8 @@ export class ClienteAtendimentoComponent implements OnInit, AfterViewInit {
       datasets: [{
         label: 'Evolução do peso',
         data: [23, 30, 24, 28],
-        backgroundColor: 'rgba(78, 115, 223, 0.05)',
-        borderColor: 'rgba(78, 115, 223, 1)',
+        backgroundColor: '#b8e300',
+        borderColor: '#b8e300  ',
         borderWidth: 1
       }]
     };

@@ -6,3 +6,21 @@
   margin-bottom: 15px;
 } */
 
+.custom-step-icon {
+  background-color: #820ad1;
+  color: #ffffff; /* Altere a cor do ícone conforme necessário */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-horizontal-stepper-header .mat-step-header:nth-child(1) .mat-step-icon {
+  visibility: hidden;
+}
+
+.mat-horizontal-stepper-header .mat-step-header:nth-child(1) .mat-step-icon ~ span {
+  visibility: hidden;
+}

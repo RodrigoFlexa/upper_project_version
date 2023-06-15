@@ -1,7 +1,8 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
   <mat-step [stepControl]="clienteForm">
     <form [formGroup]="clienteForm">
-      <ng-template matStepLabel>Dados do Cliente</ng-template>
+      <ng-template matStepLabel >Dados do Cliente</ng-template>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputNome">Nome</label>
@@ -74,7 +75,7 @@
             <option value="Ave">Ave</option>
           </select>
         </div>
-        
+
         <div class="form-group col-md-4">
           <label for="inputRaca">Raça</label>
           <select class="form-control" id="inputRaca" formControlName="raca">
@@ -91,9 +92,9 @@
             </ng-container>
           </select>
         </div>
-        
-        
-        
+
+
+
 
         <div class="form-group col-md-4">
           <label for="inputSexo">Sexo</label>
@@ -103,7 +104,7 @@
             <option value="Fêmea">Fêmea</option>
           </select>
         </div>
-        
+
       </div>
 
       <div class="d-flex justify-content-end">

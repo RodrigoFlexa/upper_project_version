@@ -109,7 +109,7 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       map((value) => this._filterDoencas(value))
     );
   }
-  
+
   openDialog(): void {
     const data = {
       motivos: this.motivos.join(' '),
@@ -121,18 +121,18 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       reproducao: this.reproducao.join(' '),
       viagens: this.viagens.join(' ')
     };
-  
+
     const dialogRef = this.dialog.open(ShowContaComponent, {
-      width: '800px',
-      height: '500px',
+      width: '900px',
+      height: '700px',
       data: data
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       // Lógica a ser executada após o fechamento do diálogo, se necessário
     });
   }
-  
+
   async getClienteById(MeuId: number) {
     this.service.getClienteById(MeuId).subscribe(
       (resposta: User) => {

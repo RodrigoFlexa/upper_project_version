@@ -580,7 +580,7 @@ pre code {
   padding-left: 0.75rem;
   margin-right: auto;
   margin-left: auto;
-  background-color: #F4F7FE;
+  background-color: #ffffff;
 }
 
 @media (min-width: 576px) {
@@ -3975,7 +3975,7 @@ input[type=button].btn-block {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  
+
 }
 .navbar .container,
 .navbar .container-fluid,
@@ -10022,7 +10022,7 @@ body {
   flex-grow: 1;
   min-height: calc(100vh - 56px);
   margin-left: -225px;
-  background-color: #F4F7FE;;
+  background-color: #FFFFFF;;
 }
 
 .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
@@ -10115,7 +10115,7 @@ body {
 }
 .sb-topnav.navbar-dark #sidebarToggle {
   color: rgba(255, 255, 255, 0.5);
-  
+
 }
 .sb-topnav.navbar-light #sidebarToggle {
   color: #212529;
@@ -10170,7 +10170,7 @@ body {
 }
 
 .sb-sidenav-dark {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   color: rgba(255, 255, 255, 0.5);
@@ -10189,17 +10189,17 @@ body {
   color: #A3AED0;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
-  color: #A3AED0;
+  color: #2f0549;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
-  color: #1B2559;
+  color: #2f0549;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
-  color: #1B2559;
+  color: #2f0549;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
-  
-  color: #1B2559;
+
+  color:#2f0549;
 }
 .sb-sidenav-dark .sb-sidenav-footer {
   background-color: #343a40;
