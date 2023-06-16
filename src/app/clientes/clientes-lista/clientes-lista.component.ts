@@ -110,6 +110,7 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => {
       this.table.DataTable({
+        stripeClasses: [],
         language: {
           emptyTable: '',
           info: '',
@@ -132,6 +133,7 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
           }
         }
       });
+
     }, 0);
 
   }
