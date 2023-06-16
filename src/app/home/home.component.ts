@@ -20,31 +20,6 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   @ViewChild(BaseChartDirective) barChart: BaseChartDirective | undefined;
 
   public barChartOptions: ChartConfiguration['options'] = {
@@ -84,45 +59,6 @@ export class HomeComponent implements OnInit{
 
   public barChartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   private newLabel? = 'Faturamento Mensal';

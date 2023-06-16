@@ -12,38 +12,40 @@
     Tabela Clientes
   </div>
   <div class="card-body">
-    <table #dataTable class="display custom-table custom-table-2">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Tutor</th>
-          <th>Nome do Pet</th>
-          <th>Espécie</th>
-          <th>Raça</th>
-          <th>Idade</th>
-          <th>Telefone</th>
-          <th>Ações</th> <!-- Coluna para os botões de ação -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of displayedUsers; let i = index" (mouseover)="clienteHovered = i" (mouseout)="clienteHovered = -1" (click)="atendimento(user)">
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.pet_name }}</td>
-          <td>{{ user.pet_especie }}</td>
-          <td>{{ user.pet_raca }}</td>
-          <td>{{ user.pet_idade }}</td>
-          <td>{{ user.telefone }}</td>
-          <td>
-            <div class="button-group">
-              <button class="btn btn-action custom-edit-button" (click)="attCliente(user.id); $event.stopPropagation()">Editar</button>
-              <div class="divider"></div>
-              <button class="btn btn-action custom-delete-button" (click)="deleteCliente(user.id); $event.stopPropagation()">Deletar</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table #dataTable class="display table-stripped blue-table-strippedhover table table-striped custom-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tutor</th>
+            <th>Nome do Pet</th>
+            <th>Espécie</th>
+            <th>Raça</th>
+            <th>Idade</th>
+            <th>Telefone</th>
+            <th>Ações</th> <!-- Coluna para os botões de ação -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of displayedUsers; let i = index" (mouseover)="clienteHovered = i" (mouseout)="clienteHovered = -1" (click)="atendimento(user)">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.pet_name }}</td>
+            <td>{{ user.pet_especie }}</td>
+            <td>{{ user.pet_raca }}</td>
+            <td>{{ user.pet_idade }}</td>
+            <td>{{ user.telefone }}</td>
+            <td>
+              <div class="button-group">
+                <button class="btn btn-action custom-edit-button" (click)="attCliente(user.id); $event.stopPropagation()">Editar</button>
+                <div class="divider"></div>
+                <button class="btn btn-action custom-delete-button" (click)="deleteCliente(user.id); $event.stopPropagation()">Deletar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <br>

@@ -133,5 +133,6 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
         }
       });
     }, 0);
+
   }
 }

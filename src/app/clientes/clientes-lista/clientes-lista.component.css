@@ -60,10 +60,11 @@
   border: none;
 }
 
-.custom-table tbody tr:nth-child(odd) {
+.table-stripped tbody tr:nth-child(odd) {
   background-color: #E3F4F4;
 }
-.custom-table-2 tbody tr:hover {
+
+.blue-hover tbody tr:hover {
   background-color: #bdf3ff; /* Cor de fundo do hover */
 }
 
