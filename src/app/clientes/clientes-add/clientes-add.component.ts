@@ -15,52 +15,9 @@ export class ClientesAddComponent implements OnInit {
   petForm: FormGroup;
   clienteForm: FormGroup;
   isLinear = true;
-  racasCachorros: string[] = [
-    "Akita",
-    "Bulldog Francês",
-    "Bulldog Inglês",
-    "Beagle",
-    "Boxer",
-    "Border Collie",
-    "Chihuahua",
-    "Cocker Spaniel",
-    "Dálmata",
-    "Doberman",
-    "Golden Retriever",
-    "Labrador Retriever",
-    "Husky Siberiano",
-    "Pastor Alemão",
-    "Poodle",
-    "Pug",
-    "Rottweiler",
-    "Schnauzer",
-    "Shar-Pei",
-    "Shih Tzu",
-    "Yorkshire Terrier",
-  ];
-  racasGatos: string[] = [
-    "Abissínio",
-    "Bengal",
-    "British Shorthair",
-    "Burmese",
-    "Maine Coon",
-    "Persa",
-    "Ragdoll",
-    "Siamês",
-    "Sphynx",
-    "Scottish Fold",
-    "Angorá",
-    "Siberiano",
-    "Himalaio",
-    "Norueguês da Floresta",
-    "Russo Azul",
-    "Manx",
-    "Somali",
-    "Siamese",
-    "Tonquinês",
-    "Birmanês",
-    // Adicione mais raças de gatos aqui...
-  ];
+  racasCachorros!: string[];
+  racasGatos!: string[];
+
 
 
 
@@ -97,6 +54,10 @@ export class ClientesAddComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.service.getRacas().subscribe((racas: any) => {
+      this.racasCachorros = racas.cao;
+      this.racasGatos = racas.gato;
+    });
   }
 
   closeDialog(): void {

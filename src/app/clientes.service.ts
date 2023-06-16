@@ -31,9 +31,9 @@ export class ClientesService {
   }
 
 
-  get_racas(id: number): Observable<void> {
-    const url = `https://laikapet.sinopeoficial.com.br/api/especies`;
-    return this.http.get<void>(url);
+  getRacas(): Observable<any> {
+    const url = 'https://laikapet.sinopeoficial.com.br/api/especies';
+    return this.http.get<any>(url);
   }
 
 
