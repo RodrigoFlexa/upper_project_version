@@ -17,7 +17,7 @@ import { SuccessDialogComponent } from './success-dialog/success-dialog.componen
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import {MatTabsModule} from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { ShowContaComponent } from './show-conta/show-conta.component';
 
@@ -45,7 +45,8 @@ import { ShowContaComponent } from './show-conta/show-conta.component';
     MatIconModule,
     MatGridListModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule
     ],
   exports: [
 

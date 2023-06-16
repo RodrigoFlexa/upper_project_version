@@ -14,7 +14,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnamneseService } from './anamnese.service';
-import { NgChartsModule } from 'ng2-charts';
+import { NgChartsModule,NgChartsConfiguration  } from 'ng2-charts';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
@@ -33,12 +33,13 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatStepperModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    NgChartsModule,
+    NgChartsModule.forRoot(),
     MatAutocompleteModule
   ],
   providers: [
     ClientesService,
-    AnamneseService
+    AnamneseService,
+    { provide: NgChartsConfiguration, useValue: { generateColors: false }}
   ],
   bootstrap: [AppComponent]
 })

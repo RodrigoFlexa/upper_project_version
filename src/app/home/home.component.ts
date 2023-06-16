@@ -1,83 +1,175 @@
 import { Component, OnInit, AfterViewInit,ViewChild,ElementRef  } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Chart, ChartData, registerables } from 'chart.js';
+import { ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
+import DatalabelsPlugin from 'chartjs-plugin-datalabels';
+import { default as Annotation } from 'chartjs-plugin-annotation';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('myAreaChart', { static: false }) areaChartRef!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('myBarChart', { static: false }) barChartRef!: ElementRef<HTMLCanvasElement>;
-  areaChart!: Chart;
-  barChart!: Chart;
+export class HomeComponent implements OnInit{
 
   constructor() {
     Chart.register(...registerables);
+    Chart.register(Annotation)
   }
-
-  ngAfterViewInit(): void {
-    // Area Chart Example
-    const areaChartCtx = this.areaChartRef.nativeElement.getContext('2d');
-    if (!areaChartCtx) return;
-
-    // Bar Chart Example
-    const barChartCtx = this.barChartRef.nativeElement.getContext('2d');
-    if (!barChartCtx) return;
-
-    // Area Chart Data
-    const areaChartData = {
-      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
-      datasets: [{
-        label: 'Faturamento Mensal',
-        data: [10000, 20000, 30000, 25000, 35000, 50000, 40000],
-        backgroundColor: '#820ad1',
-        borderColor: '#820ad1',
-        borderWidth: 1,
-        pointBackgroundColor: '#00bef1'
-      }]
-    };
-
-    const barChartData = {
-      labels: ['Gripe Canina', 'Dermatite Alérgica', 'Otite', 'Verminose', 'Fratura Óssea'],
-      datasets: [
-        {
-          label: 'Doenças Mais Comuns',
-          data: [15, 10, 8, 12, 5], // Contagem de diagnósticos de cada doença
-          backgroundColor: [
-            '#820ad1',
-            '#820ad1',
-            '#820ad1',
-            '#820ad1',
-            '#820ad1'
-          ],
-          borderColor: [
-            '#820ad1',
-            '#820ad1',
-            '#820ad1',
-            '#820ad1',
-            '#820ad1'
-          ],
-          borderWidth: 1
-        }
-      ]
-    };
-
-
-
-    // Criar instâncias dos gráficos somente se os contextos estiverem disponíveis
-    this.areaChart = new Chart(areaChartCtx, {
-      type: 'line',
-      data: areaChartData
-    });
-
-    this.barChart = new Chart(barChartCtx, {
-      type: 'bar',
-      data: barChartData
-    });
-  }
-
   ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  @ViewChild(BaseChartDirective) barChart: BaseChartDirective | undefined;
+
+  public barChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    scales: {
+      x: {},
+      y: {
+        min: 0,
+        max: 30
+      }
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+      datalabels: {
+        anchor: 'end',
+        align: 'end'
+      }
+    }
+  };
+  public barChartType: ChartType = 'bar';
+  public barChartPlugins = [
+    DatalabelsPlugin
+  ];
+
+  public barChartData: ChartData<'bar'> = {
+    labels: ['Gripe Canina', 'Dermatite Alérgica', 'Otite', 'Verminose', 'Fratura Óssea'],
+    datasets: [
+      { data: [15, 10, 20, 12, 2], label: 'Doenças mais comuns' }
+    ]
+  };
+
+  // events
+  public barChartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public barChartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+    console.log(event, active);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  private newLabel? = 'Faturamento Mensal';
+
+
+  public lineChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [10000, 20000, 30000, 25000, 35000, 50000, 40000],
+        label: 'Faturamento Mensal',
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: '#820ad1',
+        pointBackgroundColor: '#00bef1',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+        fill: 'origin',
+      }
+    ],
+    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho']
+  };
+
+  public lineChartOptions: ChartConfiguration['options'] = {
+    elements: {
+      line: {
+        tension: 0.1
+      }
+    },
+    plugins: {
+      legend: { display: true }
+    }
+  };
+  public lineChartType: ChartType = 'line';
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+  // events
+  public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+    console.log(event, active);
+  }
+  public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+    console.log(event, active);
+  }
+  public hideOne(): void {
+    const isHidden = this.chart?.isDatasetHidden(1);
+    this.chart?.hideDataset(1, !isHidden);
+  }
+
 }

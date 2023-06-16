@@ -120,12 +120,13 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       medicamentos: this.medicamentosEmUso.join(' '),
       comportamentos: this.comportamentos.join(' '),
       reproducao: this.reproducao.join(' '),
-      viagens: this.viagens.join(' ')
+      viagens: this.viagens.join(' '),
+      // data: this.Data
     };
 
     const dialogRef = this.dialog.open(ShowContaComponent, {
-      width: '900px',
-      height: '700px',
+      width: '800px',
+      height: '400px',
       data: data
     });
 
