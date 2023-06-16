@@ -425,24 +425,34 @@
         </div>
 
         <br>
+
+
         <div class="timeline-container">
           <div class="timeline-title text-center" style="display: flex; align-items: center;">
             <hr style="border-top: 2px solid black; flex-grow: 1;">
             <h3 style="margin: 0;">Histórico</h3>
             <hr style="border-top: 2px solid black; flex-grow: 1;">
           </div>
+          
           <section class="py-5">
             <ul class="timeline-with-icons">
               <li class="timeline-item mb-5" *ngFor="let anamnese of anamneses">
-                <span class="timeline-icon">
-                  <i class="fas fa-file-archive timeline-icon-size" style="color:#0089e3;"></i>
-                </span>
+                <div class="timeline-clickable" (click)="logAnamneseId(anamnese.id)">
+                  <span class="timeline-icon">
+                    <i class="fas fa-file-archive timeline-icon-size hoverable" style="color:#0089e3;"></i>
+                  </span>
+                </div>
                 <h5 class="fw-bold">Data: {{ anamnese.dataCriacao }}</h5>
                 <p class="text-muted mb-2 fw-bold">Motivo Da Consulta: {{ anamnese.motivoDaConsulta }}</p>
                 <p class="text-muted">Sintomas: {{ anamnese.sintomas }}</p>
+                <p style="color: #ffff;">id: {{ anamnese.id }}</p>
               </li>
             </ul>
           </section>
+          
+          
+          
+
         </div>
 
 

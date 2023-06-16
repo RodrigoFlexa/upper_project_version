@@ -129,6 +129,10 @@
 
 
 
+.timeline-icon-size.hoverable:hover {
+  transform: scale(1.1); /* Aumenta o ícone em 10% quando o mouse estiver em cima */
+  cursor: pointer; /* Altera o cursor do mouse para o estilo de clique */
+}
 
 
 

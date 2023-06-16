@@ -19,4 +19,10 @@ export class AnamneseService {
     const url = `https://laikapet.sinopeoficial.com.br/api/anamneses/pets/${id}/anamneses`;
     return this.http.get<Anamnese[]>(url);
   }
+
+  getAnamnesesById(id: number): Observable<Anamnese> {
+    const url = `https://laikapet.sinopeoficial.com.br/api/anamneses/${id}`;
+    return this.http.get<Anamnese>(url);
+  }
+
 }

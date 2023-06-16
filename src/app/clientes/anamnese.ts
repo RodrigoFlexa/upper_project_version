@@ -2,6 +2,7 @@ import { Pet } from "./pet";
 
 export class Anamnese {
   pet_id : number;
+  id: number;
   motivoDaConsulta : string;
   sintomas: string;
   cirurgias : string;
@@ -14,6 +15,7 @@ export class Anamnese {
 
   constructor() {
     this.pet_id = 0;
+    this.id = 0;
     this.motivoDaConsulta ='';
     this.sintomas = '';
     this.cirurgias = '';

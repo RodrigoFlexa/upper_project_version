@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit{
     Chart.register(Annotation)
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
 
@@ -81,11 +80,9 @@ export class HomeComponent implements OnInit{
 
   // events
   public barChartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
   }
 
   public barChartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
   }
 
 
@@ -162,10 +159,8 @@ export class HomeComponent implements OnInit{
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
   // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
   }
   public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
   }
   public hideOne(): void {
     const isHidden = this.chart?.isDatasetHidden(1);

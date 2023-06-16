@@ -17,7 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ShowContaComponent } from '../show-conta/show-conta.component';
 import { firstValueFrom } from 'rxjs';
-
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-cliente-anamnese',
   templateUrl: './cliente-anamnese.component.html',
@@ -28,6 +28,8 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   cliente: User = new User();
   id!: number;
   anamneses: Anamnese[] = [];
+  anamnese_chose!:Anamnese;
+
 
   //Gráficos Suporte ao diagnóstico
   suporteDiagnosticoAtivado: boolean = false;
@@ -113,15 +115,15 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
 
   openDialog(): void {
     const data = {
-      motivos: this.motivos.join(' '),
-      sintomas: this.sintomasAdicionados.join(' '),
-      cirurgias: this.cirurgiasAnteriores.join(' '),
-      doencas: this.doencasPrevias.join(' '),
-      medicamentos: this.medicamentosEmUso.join(' '),
-      comportamentos: this.comportamentos.join(' '),
-      reproducao: this.reproducao.join(' '),
-      viagens: this.viagens.join(' '),
-      // data: this.Data
+      motivos: this.motivos.join(', '),
+      sintomas: this.sintomasAdicionados.join(', '),
+      cirurgias: this.cirurgiasAnteriores.join(', '),
+      doencas: this.doencasPrevias.join(', '),
+      medicamentos: this.medicamentosEmUso.join(', '),
+      comportamentos: this.comportamentos.join(', '),
+      reproducao: this.reproducao.join(', '),
+      viagens: this.viagens.join(', '),
+      data: format(new Date(), 'dd/MM/yyyy')
     };
 
     const dialogRef = this.dialog.open(ShowContaComponent, {
@@ -133,6 +135,45 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       // Lógica a ser executada após o fechamento do diálogo, se necessário
     });
+  }
+
+  logAnamneseId(id: number) {
+    let subscription: Subscription;
+  
+    subscription = this.anamneseService.getAnamnesesById(id).subscribe(
+      (resposta: Anamnese) => {
+        console.log('anamnese.id:', resposta);
+        // Faça o que for necessário com a resposta da anamnese
+        const data = {
+          motivos: resposta.motivoDaConsulta,
+          sintomas: resposta.sintomas,
+          cirurgias: resposta.cirurgias,
+          doencas: resposta.doencas,
+          medicamentos: resposta.medicamentos,
+          comportamentos: resposta.comportamento,
+          reproducao: resposta.reproducao,
+          viagens: resposta.viagem,
+          data: resposta.dataCriacao
+        };
+    
+        const dialogRef = this.dialog.open(ShowContaComponent, {
+          width: '800px',
+          height: '400px',
+          data: data
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          // Lógica a ser executada após o fechamento do diálogo, se necessário
+        });
+      },
+      (error) => {
+        console.error('Erro ao obter a anamnese:', error);
+      },
+      () => {
+        // A inscrição foi concluída
+        subscription.unsubscribe();
+      }
+    );
   }
 
   async getClienteById(MeuId: number) {
@@ -169,14 +210,14 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
 
   openSuccessDialog(message: string): void {
     const data = {
-      motivos: this.motivos.join(' '),
-      sintomas: this.sintomasAdicionados.join(' '),
-      cirurgias: this.cirurgiasAnteriores.join(' '),
-      doencas: this.doencasPrevias.join(' '),
-      medicamentos: this.medicamentosEmUso.join(' '),
-      comportamentos: this.comportamentos.join(' '),
-      reproducao: this.reproducao.join(' '),
-      viagens: this.viagens.join(' '),
+      motivos: this.motivos.join(', '),
+      sintomas: this.sintomasAdicionados.join(', '),
+      cirurgias: this.cirurgiasAnteriores.join(', '),
+      doencas: this.doencasPrevias.join(', '),
+      medicamentos: this.medicamentosEmUso.join(', '),
+      comportamentos: this.comportamentos.join(', '),
+      reproducao: this.reproducao.join(', '),
+      viagens: this.viagens.join(', '),
       message: message
     };
 
@@ -212,16 +253,17 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   cadastrarAnamnese() {
     if (this.fichaAnamnesePreenchida()) {
       // E assim por diante para as outras listas suspensas
-      const motivos_str = this.motivos.join(' ');
-      const sintomas_str = this.sintomasAdicionados.join(' ');
-      const cirurgias_str = this.cirurgiasAnteriores.join(' ');
-      const doencas_str = this.doencasPrevias.join(' ');
-      const medicamentos_str = this.medicamentosEmUso.join(' ');
-      const comportamentos_str = this.comportamentos.join(' ');
-      const reproducao_str = this.reproducao.join(' ');
-      const viagens_str = this.viagens.join(' ');
+      const motivos_str = this.motivos.join(', ');
+      const sintomas_str = this.sintomasAdicionados.join(', ');
+      const cirurgias_str = this.cirurgiasAnteriores.join(', ');
+      const doencas_str = this.doencasPrevias.join(', ');
+      const medicamentos_str = this.medicamentosEmUso.join(', ');
+      const comportamentos_str = this.comportamentos.join(', ');
+      const reproducao_str = this.reproducao.join(', ');
+      const viagens_str = this.viagens.join(', ');
 
       const anamnese: Anamnese = {
+        id: 0,
         motivoDaConsulta: motivos_str,
         sintomas: sintomas_str,
         cirurgias: cirurgias_str,
@@ -250,6 +292,8 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       );
     }
   }
+
+
 
   voltarPraatendimento(cliente: User) {
     this.router.navigate(['/cliente', cliente.id], { state: { cliente } });
