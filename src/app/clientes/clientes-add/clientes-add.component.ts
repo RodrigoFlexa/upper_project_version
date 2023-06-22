@@ -60,6 +60,14 @@ export class ClientesAddComponent implements OnInit {
     });
   }
 
+  validateClienteForm() {
+    this.clienteForm.markAllAsTouched();
+  }
+
+  validatePetForm() {
+    this.petForm.markAllAsTouched();
+  }
+
   closeDialog(): void {
     this.dialogRef.close();
   }

@@ -4,14 +4,19 @@
     <form [formGroup]="clienteForm">
       <ng-template matStepLabel >Dados do Cliente</ng-template>
       <div class="form-row">
+
         <div class="form-group col-md-6">
           <label for="inputNome">Nome</label>
-          <input type="text" class="form-control" id="inputNome" placeholder="Nome do Tutor" formControlName="nome">
+          <input type="text" class="form-control" id="inputNome" placeholder="Nome do Tutor" formControlName="nome"
+          [ngClass]="{ 'invalid-field': clienteForm.get('nome')?.invalid && clienteForm.get('nome')?.touched }"
+
+          >
         </div>
 
         <div class="form-group col-md-6">
           <label for="inputCPF">CPF</label>
-          <input type="text" class="form-control" id="inputCPF" placeholder="CPF" formControlName="cpf">
+          <input type="text" class="form-control" id="inputCPF" placeholder="CPF" formControlName="cpf"
+          [ngClass]="{ 'invalid-field': clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched }">
         </div>
       </div>
 
@@ -53,7 +58,8 @@
       <ng-template matStepLabel>Dados do Pet</ng-template>
       <div class="form-group">
         <label for="inputNomePet">Nome do Pet</label>
-        <input type="text" class="form-control" id="inputNomePet" placeholder="Nome do Pet" formControlName="nomePet">
+        <input type="text" class="form-control" id="inputNomePet" placeholder="Nome do Pet" formControlName="nomePet"
+        [ngClass]="{ 'invalid-field': petForm.get('nomePet')?.invalid && petForm.get('nomePet')?.touched }">
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -109,7 +115,7 @@
 
       <div class="d-flex justify-content-end">
         <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button matStepperNext>Próximo</button>
+        <button mat-button (click)="validatePetForm()" matStepperNext>Próximo</button>
       </div>
     </form>
   </mat-step>

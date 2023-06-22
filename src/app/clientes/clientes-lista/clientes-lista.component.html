@@ -1,52 +1,106 @@
 <h1 class="mt-4">Clientes</h1>
 
-
-<div class="d-flex justify-content-end">
-  <button class="btn btn-primary custom-button" (click)="openDialog()">Adicionar Cliente</button>
-</div>
-
 <br>
 <div class="card mb-4">
-  <div class="card-header custom-card-header-3 no-border-header" >
-    <i class="fas fa-table me-1"></i>
-    Tabela Clientes
+  <div class="card-header custom-card-header-3 no-border-header d-flex justify-content-between">
+    <div>
+      <i class="fas fa-table me-1"></i>
+      Tabela Clientes
+    </div>
+
+    <div class="btn-group" role="group" aria-label="Exemplo de Button Group">
+      <button class="btn  custom-button" [disabled]="!isClienteSelecionado()">Editar</button>
+      <button class="btn custom-button" [disabled]="!isClienteSelecionado()" (click)="deleteCliente(selectedRow.id)">Deletar</button>
+      <button class="btn  custom-button" [disabled]="!isClienteSelecionado()" (click)="atendimento(selectedRow)">Atender</button>
+      <button class="btn  custom-button" (click)="openDialog()">Adicionar</button>
+    </div>
+
+
   </div>
-  <div class="card-body">
+
+
+  <div class="card-body" (click)="onDocumentClick($event)">
+
+    <div class="example-header">
+      <mat-form-field appearance="fill">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Pesquisar">
+      </mat-form-field>
+    </div>
+
     <div class="table-responsive">
-      <table #dataTable class="display table-stripped blue-table-strippedhover table table-striped custom-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Tutor</th>
-            <th>Nome do Pet</th>
-            <th>Espécie</th>
-            <th>Raça</th>
-            <th>Idade</th>
-            <th>Telefone</th>
-            <th>Ações</th> <!-- Coluna para os botões de ação -->
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of displayedUsers; let i = index" (mouseover)="clienteHovered = i" (mouseout)="clienteHovered = -1" (click)="atendimento(user)">
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.pet_name }}</td>
-            <td>{{ user.pet_especie }}</td>
-            <td>{{ user.pet_raca }}</td>
-            <td>{{ user.pet_idade }}</td>
-            <td>{{ user.telefone }}</td>
-            <td>
-              <div class="button-group">
-                <button class="btn btn-action custom-edit-button" (click)="attCliente(user.id); $event.stopPropagation()">Editar</button>
-                <div class="divider"></div>
-                <button class="btn btn-action custom-delete-button" (click)="deleteCliente(user.id); $event.stopPropagation()">Deletar</button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
+      <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+          <td mat-cell *matCellDef="let user">{{ user.nome }}</td>
+        </ng-container>
+        <ng-container matColumnDef="pet">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Pet</th>
+          <td mat-cell *matCellDef="let user">{{ user.pet.nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+          <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Telefone</th>
+          <td mat-cell *matCellDef="let user">{{ user.telefone }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cidade">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Cidade</th>
+          <td mat-cell *matCellDef="let user">{{ user.cidade }}</td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let user; columns: displayedColumns" [ngClass]="{'highlight': user.id === selectedRow?.id}" (click)="onRowClicked(user)"></tr>
       </table>
+      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
   </div>
 </div>
+
+
 <br>
 <br>
+
+<!--
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"
+          > {{ row.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+      <td mat-cell *matCellDef="let row"> {{ row.email }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; let entry"
+        [ngClass]="{'highlight': entry.id === selectedRow?.id}"
+        (click)="onRowClicked(row)"></tr>
+  </table>
+  <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div> -->

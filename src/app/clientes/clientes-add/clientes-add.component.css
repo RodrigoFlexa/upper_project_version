@@ -24,3 +24,8 @@
 .mat-horizontal-stepper-header .mat-step-header:nth-child(1) .mat-step-icon ~ span {
   visibility: hidden;
 }
+.invalid-field {
+  border: 1px solid red;
+}
+
+
