@@ -5,18 +5,60 @@ import { BaseChartDirective } from 'ng2-charts';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { default as Annotation } from 'chartjs-plugin-annotation';
 
+declare var $: any;
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit, AfterViewInit{
 
   constructor() {
     Chart.register(...registerables);
     Chart.register(Annotation)
   }
+
+  @ViewChild('dataTable', { static: false }) table: any;
+
+  ngAfterViewInit() {
+    this.table = $(this.table.nativeElement);
+    this.updateDataTable();
+  }
+  private updateDataTable() {
+    if (this.table && $.fn.DataTable.isDataTable(this.table)) {
+      // Destruir a tabela existente antes de recriá-la
+      this.table.DataTable().destroy();
+    }
+    setTimeout(() => {
+      this.table.DataTable({
+        stripeClasses: [],
+        language: {
+          emptyTable: '',
+          info: '',
+          infoEmpty: '',
+          infoFiltered: '',
+          lengthMenu: 'Exibir _MENU_ entradas',
+          loadingRecords: 'Carregando...',
+          processing: 'Processando...',
+          search: 'Pesquisar:',
+          zeroRecords: '',
+          paginate: {
+            first: 'Primeiro',
+            last: 'Último',
+            next: 'Próximo',
+            previous: 'Anterior'
+          },
+          aria: {
+            sortAscending: ': Ordenar colunas de forma ascendente',
+            sortDescending: ': Ordenar colunas de forma descendente'
+          }
+        }
+      });
+    }, 0);
+
+  }
+
   ngOnInit(): void {
   }
 
