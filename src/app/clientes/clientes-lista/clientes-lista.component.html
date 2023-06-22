@@ -8,12 +8,13 @@
       Tabela Clientes
     </div>
 
-    <div class="btn-group" role="group" aria-label="Exemplo de Button Group">
-      <button class="btn  custom-button" [disabled]="!isClienteSelecionado()">Editar</button>
+    <div class="btn-group d-flex flex-wrap" role="group" aria-label="Exemplo de Button Group">
+      <button class="btn custom-button" [disabled]="!isClienteSelecionado()">Editar</button>
       <button class="btn custom-button" [disabled]="!isClienteSelecionado()" (click)="deleteCliente(selectedRow.id)">Deletar</button>
-      <button class="btn  custom-button" [disabled]="!isClienteSelecionado()" (click)="atendimento(selectedRow)">Atender</button>
-      <button class="btn  custom-button" (click)="openDialog()">Adicionar</button>
+      <button class="btn custom-button" [disabled]="!isClienteSelecionado()" (click)="atendimento(selectedRow)">Atender</button>
+      <button class="btn custom-button" (click)="openDialog()">Adicionar</button>
     </div>
+
 
 
   </div>
@@ -28,7 +29,7 @@
             <i class="fa fa-search"></i>
           </span>
         </div>
-        <input type="text" class="form-control" (keyup)="applyFilter($event)" placeholder="Pesquisar">
+        <input type="text" class="form-control" onkeyup="applyFilter(event)" placeholder="Pesquisar">
       </div>
     </div>
 
