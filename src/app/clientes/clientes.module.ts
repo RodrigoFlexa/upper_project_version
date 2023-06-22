@@ -20,7 +20,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { ShowContaComponent } from './show-conta/show-conta.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     ClientesListaComponent,
@@ -46,11 +49,19 @@ import { ShowContaComponent } from './show-conta/show-conta.component';
     MatGridListModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatCheckboxModule
     ],
   exports: [
 
-    ClientesListaComponent
+    ClientesListaComponent,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatCheckboxModule
   ]
 })
 export class ClientesModule { }
