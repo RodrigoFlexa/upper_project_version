@@ -69,6 +69,8 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
     console.log(row);
   }
 
+
+
   openDialog(): void {
     const dialogRef = this.dialog.open(ClientesAddComponent, { width: '750px' });
 
@@ -92,7 +94,8 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
     this.service.getAllClientes().subscribe(
       (clientes: User[]) => {
         this.clientes = clientes;
-        this.displayedColumns = ['id', 'nome', 'pet', 'email', 'telefone', 'cidade'];
+        this.displayedColumns = ['select', 'id', 'nome', 'pet', 'email', 'telefone', 'cidade'];
+
         this.dataSource = new MatTableDataSource(clientes);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
