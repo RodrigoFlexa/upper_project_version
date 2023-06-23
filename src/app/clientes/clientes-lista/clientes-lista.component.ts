@@ -86,9 +86,20 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
+
+    if (this.dataSource.filterPredicate) {
+      this.dataSource.filterPredicate = (data: User, filter: string) => {
+        const searchData = `${data.id}${data.nome}${data.email}${data.telefone}${data.cidade}${data.pet.nome}`.toLowerCase();
+        return searchData.includes(filter);
+      };
+
+      this.dataSource.filter = filterValue;
+    }
   }
+
+
 
   private getCliente() {
     this.service.getAllClientes().subscribe(
@@ -159,3 +170,4 @@ function CustomPaginator(): MatPaginatorIntl {
 
   return paginatorIntl;
 }
+

@@ -29,7 +29,7 @@
             <i class="fa fa-search"></i>
           </span>
         </div>
-        <input type="text" class="form-control" onkeyup="applyFilter(event)" placeholder="Pesquisar">
+        <input type="text" class="form-control" (input)="applyFilter($event)" placeholder="Pesquisar">
       </div>
     </div>
 
