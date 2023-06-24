@@ -18,8 +18,8 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class ShowContaComponent implements OnInit, AfterViewInit{
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-  
-  
+
+
   constructor(
     private router: Router,
     private service: ClientesService,
@@ -29,21 +29,32 @@ export class ShowContaComponent implements OnInit, AfterViewInit{
   ) {
   }
 
-  
+  requisicaoEmAndamento: boolean = false;
+  requisicaoConcluida: boolean = false;
+
+  solicitarRequisicao() {
+    this.requisicaoEmAndamento = true;
+
+    // Simule a requisição com um atraso de 2 segundos
+    setTimeout(() => {
+      // Lógica da requisição aqui
+
+      // Quando a requisição for concluída, defina requisicaoEmAndamento como false
+      // e requisicaoConcluida como true
+      this.requisicaoEmAndamento = false;
+      this.requisicaoConcluida = true;
+    }, 2000);
+  }
+
+
   ngAfterViewInit(): void {
-    
   }
 
 
   ngOnInit(): void {
-    
+
   }
-  
 
-
-  
-  
-  
   closeDialog(): void {
     this.dialogRef.close();
   }

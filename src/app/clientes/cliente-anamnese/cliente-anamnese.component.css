@@ -51,6 +51,10 @@
   font-weight: bold;
   text-align: center;
 }
+.invalid {
+  border-color: red;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
 
 
 .custom-button {
@@ -105,7 +109,7 @@
 
 .timeline-with-icons .timeline-icon {
   position: absolute;
-  left: -65px;
+  left: -55px;
   background-color: #E3F4F4;
   color: hsl(217, 88.8%, 35.1%);
   border-radius: 50%;
@@ -124,56 +128,13 @@
   margin-left: 20px; /* Ajuste o valor da margem conforme necessário */
 }
 
-
-
-
-
-
 .timeline-icon-size.hoverable:hover {
   transform: scale(1.1); /* Aumenta o ícone em 10% quando o mouse estiver em cima */
   cursor: pointer; /* Altera o cursor do mouse para o estilo de clique */
 }
-
-
-
-
-
-
-
-
 
 .timeline-title h3 {
   position: relative;
   display: inline-block;
   padding: 0 15px;
 }
-
-/* .timeline-title h3:before,
-.timeline-title h3:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 50%;
-  border-top: 2px solid #000;
-}
-
-.timeline-title h3:before {
-  left: -100px;
-}
-
-.timeline-title h3:after {
-  right: -100px;
-}
-
-.timeline-title h3:before,
-.timeline-title h3:after {
-  transform: translateY(-50%);
-}
-
-.timeline-title h3:before {
-  margin-left: -10px;
-}
-
-.timeline-title h3:after {
-  margin-right: -10px;
-} */

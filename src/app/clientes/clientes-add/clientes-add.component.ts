@@ -1,10 +1,11 @@
 import { Pet } from '../pet';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { ClientesService } from 'src/app/clientes.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CreatesuccessdialogComponent } from '../createsuccessdialog/createsuccessdialog.component';
 
 @Component({
   selector: 'app-clientes-add',
@@ -18,17 +19,13 @@ export class ClientesAddComponent implements OnInit {
   racasCachorros!: string[];
   racasGatos!: string[];
 
-
-
-
   constructor(
     private router: Router,
     private service: ClientesService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<ClientesAddComponent>
+    public dialogRef: MatDialogRef<ClientesAddComponent>,
+    private dialog: MatDialog
   ) {
-
-
 
     this.petForm = this.formBuilder.group({
       nomePet: ['', Validators.required],
@@ -42,7 +39,7 @@ export class ClientesAddComponent implements OnInit {
 
     this.clienteForm = this.formBuilder.group({
       nome: ['', Validators.required],
-      cpf:  ['', Validators.required],
+      cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
       cidade: ['', Validators.required],
@@ -84,7 +81,7 @@ export class ClientesAddComponent implements OnInit {
         peso: petFormData.peso,
         especie: petFormData.especie,
         raca: petFormData.raca,
-        sexo:petFormData.sexo
+        sexo: petFormData.sexo
       };
 
       const cliente: User = {
@@ -98,12 +95,24 @@ export class ClientesAddComponent implements OnInit {
         casa: clienteFormData.numero,
         pet: pet
       };
-
       this.service.salvar(cliente).subscribe(response => {
         console.log(response);
-        this.dialogRef.close({ clienteCadastrado: true }); // Emitir evento
+        // Feche o diálogo de cadastro
+        this.dialogRef.close(true);
+        // Abra o diálogo de confirmação
+
+        const dialogRef = this.dialog.open(CreatesuccessdialogComponent, {
+          width: '250px',
+          data: { message: 'Cliente cadastrado com sucesso!' }
+        });
+
+        // Após o diálogo de confirmação ser fechado
+        dialogRef.afterClosed().subscribe(result => {
+          // Faça qualquer ação necessária após a confirmação
+          console.log('Diálogo de confirmação fechado');
+        });
       });
-      this.dialogRef.close();
+
     }
   }
 }

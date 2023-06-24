@@ -18,6 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ShowContaComponent } from '../show-conta/show-conta.component';
 import { firstValueFrom } from 'rxjs';
 import { Subscription } from 'rxjs';
+// import * as mdb from 'mdb-ui-kit'; // lib
+
 @Component({
   selector: 'app-cliente-anamnese',
   templateUrl: './cliente-anamnese.component.html',
@@ -29,6 +31,15 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   id!: number;
   anamneses: Anamnese[] = [];
   anamnese_chose!:Anamnese;
+
+  motivoInvalido = false;
+  sintomasInvalido = false;
+  cirurgiasInvalido = false;
+  doencasInvalido = false;
+  medicamentosInvalido = false;
+  comportamentoInvalido = false;
+  reproducaoInvalido = false;
+  viagemInvalido = false;
 
 
   //Gráficos Suporte ao diagnóstico
@@ -113,17 +124,24 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     );
   }
 
+
+
   openDialog(): void {
+
+    this.getAnamnesesByPetId(this.id)
+
+    const ultimaAnamnese = this.anamneses[this.anamneses.length - 1];
+    console.log(ultimaAnamnese)
     const data = {
-      motivos: this.motivos.join(', '),
-      sintomas: this.sintomasAdicionados.join(', '),
-      cirurgias: this.cirurgiasAnteriores.join(', '),
-      doencas: this.doencasPrevias.join(', '),
-      medicamentos: this.medicamentosEmUso.join(', '),
-      comportamentos: this.comportamentos.join(', '),
-      reproducao: this.reproducao.join(', '),
-      viagens: this.viagens.join(', '),
-      data: format(new Date(), 'dd/MM/yyyy')
+      motivos: ultimaAnamnese.motivoDaConsulta,
+      sintomas: ultimaAnamnese.sintomas,
+      cirurgias: ultimaAnamnese.cirurgias,
+      doencas: ultimaAnamnese.doencas,
+      medicamentos: ultimaAnamnese.medicamentos,
+      comportamentos: ultimaAnamnese.comportamento,
+      reproducao: ultimaAnamnese.reproducao,
+      viagens: ultimaAnamnese.viagem,
+      data: ultimaAnamnese.dataCriacao
     };
 
     const dialogRef = this.dialog.open(ShowContaComponent, {
@@ -137,9 +155,10 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     });
   }
 
+
   logAnamneseId(id: number) {
     let subscription: Subscription;
-  
+
     subscription = this.anamneseService.getAnamnesesById(id).subscribe(
       (resposta: Anamnese) => {
         console.log('anamnese.id:', resposta);
@@ -155,13 +174,13 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
           viagens: resposta.viagem,
           data: resposta.dataCriacao
         };
-    
+
         const dialogRef = this.dialog.open(ShowContaComponent, {
           width: '800px',
           height: '400px',
           data: data
         });
-    
+
         dialogRef.afterClosed().subscribe(result => {
           // Lógica a ser executada após o fechamento do diálogo, se necessário
         });
@@ -287,6 +306,30 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
         }
       );
     } else {
+      if(this.motivos.length == 0){
+        this.motivo_invalido()
+      }
+      if(this.sintomasAdicionados.length == 0){
+        this.sintomas_invalido()
+      }
+      if(this.cirurgiasAnteriores.length == 0){
+        this.cirurgias_invalido()
+      }
+      if(this.doencasPrevias.length == 0){
+        this.doencas_invalido()
+      }
+      if(this.medicamentosEmUso.length == 0){
+        this.medicamentos_invalido()
+      }
+      if(this.comportamentos.length == 0){
+        this.comportamento_invalido()
+      }
+      if(this.reproducao.length == 0){
+        this.reproducao_invalido()
+      }
+      if(this.viagens.length == 0){
+        this.viagem_invalido()
+      }
       alert(
         'Por favor, preencha a ficha de anamnese por completo'
       );
@@ -305,6 +348,9 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     if (this.sintomaSelecionado) {
       this.sintomasAdicionados.push(this.sintomaSelecionado);
       this.sintomaSelecionado = '';
+      this.sintomasInvalido=false
+    }else{
+      this.sintomasInvalido=true
     }
   }
 
@@ -312,6 +358,9 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     if (this.cirurgiaSelecionada) {
       this.cirurgiasAnteriores.push(this.cirurgiaSelecionada);
       this.cirurgiaSelecionada = '';
+      this.cirurgiasInvalido=false
+    }else{
+      this.cirurgiasInvalido=true
     }
   }
 
@@ -333,6 +382,9 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     if (this.doencaPreviaSelecionada) {
       this.doencasPrevias.push(this.doencaPreviaSelecionada);
       this.doencaPreviaSelecionada = '';
+      this.doencasInvalido=false
+    }else{
+      this.doencasInvalido=true
     }
   }
 
@@ -346,6 +398,9 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     if (this.medicamentoSelecionado) {
       this.medicamentosEmUso.push(this.medicamentoSelecionado);
       this.medicamentoSelecionado = '';
+      this.medicamentosInvalido=false
+    }else{
+      this.medicamentosInvalido=true
     }
   }
 
@@ -360,7 +415,11 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     if (this.comportamentoSelecionado) {
       this.comportamentos.push(this.comportamentoSelecionado);
       this.comportamentoSelecionado = '';
+      this.comportamentoInvalido=false
+    }else{
+      this.comportamentoInvalido=true
     }
+
   }
 
   removerComportamento(comportamento: string): void {
@@ -374,6 +433,9 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     if (this.reproducaoSelecionada) {
       this.reproducao.push(this.reproducaoSelecionada);
       this.reproducaoSelecionada = '';
+      this.reproducaoInvalido = false
+    }else{
+      this.reproducaoInvalido = true
     }
   }
 
@@ -388,6 +450,9 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     if (this.viagemSelecionada) {
       this.viagens.push(this.viagemSelecionada);
       this.viagemSelecionada = '';
+      this.viagemInvalido=false
+    }else{
+      this.viagemInvalido= true
     }
   }
 
@@ -402,6 +467,9 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     if (this.motivosSelecionada) {
       this.motivos.push(this.motivosSelecionada);
       this.motivosSelecionada = '';
+      this.motivoInvalido = false;
+    }else{
+      this.motivoInvalido = true;
     }
   }
 
@@ -410,5 +478,94 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     if (index !== -1) {
       this.motivos.splice(index, 1);
     }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  motivo_invalido() {
+    this.motivoInvalido = true;
+  }
+
+  motivo_valido() {
+    this.motivoInvalido = false;
+  }
+
+  sintomas_invalido() {
+    this.sintomasInvalido = true;
+  }
+
+  sintomas_valido() {
+    this.sintomasInvalido = false;
+  }
+
+  cirurgias_invalido() {
+    this.cirurgiasInvalido = true;
+  }
+
+  cirurgias_valido() {
+    this.cirurgiasInvalido = false;
+  }
+
+  doencas_invalido() {
+    this.doencasInvalido = true;
+  }
+
+  doencas_valido() {
+    this.doencasInvalido = false;
+  }
+
+  medicamentos_invalido() {
+    this.medicamentosInvalido = true;
+  }
+
+  medicamentos_valido() {
+    this.medicamentosInvalido = false;
+  }
+
+  comportamento_invalido() {
+    this.comportamentoInvalido = true;
+  }
+
+  comportamento_valido() {
+    this.comportamentoInvalido = false;
+  }
+
+  reproducao_invalido() {
+    this.reproducaoInvalido = true;
+  }
+
+  reproducao_valido() {
+    this.reproducaoInvalido = false;
+  }
+
+  viagem_invalido() {
+    this.viagemInvalido = true;
+  }
+
+  viagem_valido() {
+    this.viagemInvalido = false;
   }
 }

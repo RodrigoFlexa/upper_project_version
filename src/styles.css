@@ -13,6 +13,7 @@
  /* html, body { height: 100%; }
  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
 
+ @import '~bootstrap/dist/css/bootstrap.min.css';
 
 
 :root {
@@ -10177,12 +10178,20 @@ body {
   /* color: rgba(255, 255, 255, 0.5); */
 }
 
-.logo-img {
-  width: 70px; /* Defina o tamanho desejado em pixels */
-  height: auto; /* Mantém a proporção original */
+.logo-container {
+  display: flex;
+  align-items: center;
 }
 
+.logo-img {
+  width: 70px!important;
+  height: auto!important;
+  margin-right: 10px;
+}
 
+.logo-text {
+  margin-top: 5px;
+}
 
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
   color: #A3AED0;

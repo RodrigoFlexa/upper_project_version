@@ -6,9 +6,17 @@
 }
 
 .custom-button {
-  background-color: #820ad1;
-  color: #FFFFFF;
+  background-color: #820ad1 !important;
+  color: #FFFFFF !important;
 }
+
+.custom-button[disabled] {
+  background-color: #CCCCCC !important;
+  color: #888888 !important;
+}
+
+
+
 .chart-container {
     width: 200px;
     height: 200px;

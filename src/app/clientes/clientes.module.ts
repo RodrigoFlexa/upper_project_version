@@ -25,6 +25,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { CreatesuccessdialogComponent } from './createsuccessdialog/createsuccessdialog.component';
+
 @NgModule({
   declarations: [
     ClientesListaComponent,
@@ -33,7 +35,8 @@ import { MatRadioModule } from '@angular/material/radio';
     ClientesAddComponent,
     ConfirmDialogComponent,
     SuccessDialogComponent,
-    ShowContaComponent
+    ShowContaComponent,
+    CreatesuccessdialogComponent
   ],
   imports: [
     CommonModule,

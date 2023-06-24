@@ -52,7 +52,16 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     document.addEventListener('click', this.onDocumentClick.bind(this));
     this.getCliente();
+
+    // Verifica se a rota atual é diferente da rota desejada
+
   }
+
+  atualizarTabela() {
+    // Chame a função que busca os dados da tabela novamente
+    this.getCliente();
+  }
+
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
@@ -69,52 +78,17 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
     console.log(row);
   }
 
-
-
   openDialog(): void {
-    const dialogRef = this.dialog.open(ClientesAddComponent, { width: '750px' });
+    const dialogRef = this.dialog.open(ClientesAddComponent, { width: '750px'});
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.clienteCadastrado) {
+      if (result) {
         this.getCliente();
+        this.atualizarTabela();
+      }else{
+        this.atualizarTabela();
       }
     });
-  }
-
-  atendimento(cliente: User) {
-    this.router.navigate(['/cliente', cliente.id]);
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this.dataSource.filter = filterValue;
-
-    if (this.dataSource.filterPredicate) {
-      this.dataSource.filterPredicate = (data: User, filter: string) => {
-        const searchData = `${data.id}${data.nome}${data.email}${data.telefone}${data.cidade}${data.pet.nome}`.toLowerCase();
-        return searchData.includes(filter);
-      };
-
-      this.dataSource.filter = filterValue;
-    }
-  }
-
-
-
-  private getCliente() {
-    this.service.getAllClientes().subscribe(
-      (clientes: User[]) => {
-        this.clientes = clientes;
-        this.displayedColumns = ['select', 'id', 'nome', 'pet', 'email', 'telefone', 'cidade'];
-
-        this.dataSource = new MatTableDataSource(clientes);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
   }
 
   deleteCliente(id: number) {
@@ -137,6 +111,41 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
     });
   }
 
+
+  atendimento(cliente: User) {
+    this.router.navigate(['/cliente', cliente.id]);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
+
+    if (this.dataSource.filterPredicate) {
+      this.dataSource.filterPredicate = (data: User, filter: string) => {
+        const searchData = `${data.id}${data.nome}${data.email}${data.telefone}${data.cidade}${data.pet.nome}`.toLowerCase();
+        return searchData.includes(filter);
+      };
+
+      this.dataSource.filter = filterValue;
+    }
+  }
+
+  private getCliente() {
+    this.service.getAllClientes().subscribe(
+      (clientes: User[]) => {
+        this.clientes = clientes;
+        this.displayedColumns = ['select', 'id', 'nome', 'pet', 'email', 'telefone', 'cidade'];
+
+        this.dataSource = new MatTableDataSource(clientes);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   attCliente(id: number) {
     console.log(id);
   }
@@ -146,9 +155,10 @@ export class ClientesListaComponent implements OnInit, AfterViewInit {
   }
 }
 
+
+
 function CustomPaginator(): MatPaginatorIntl {
   const paginatorIntl = new MatPaginatorIntl();
-
   paginatorIntl.itemsPerPageLabel = 'Itens por página:';
   paginatorIntl.nextPageLabel = 'Próxima';
   paginatorIntl.previousPageLabel = 'Anterior';
@@ -159,7 +169,6 @@ function CustomPaginator(): MatPaginatorIntl {
     }
 
     length = Math.max(length, 0);
-
     const startIndex = page * pageSize;
     const endIndex = startIndex < length
       ? Math.min(startIndex + pageSize, length)

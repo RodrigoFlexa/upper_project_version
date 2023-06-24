@@ -1,131 +1,147 @@
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<div style="max-height: 600px; overflow-y: scroll;">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper class="container">
+    <div class="form-container">
+      <mat-step [stepControl]="clienteForm">
+        <form [formGroup]="clienteForm">
+          <ng-template matStepLabel>Dados do Cliente</ng-template>
+          <div class="form-row">
 
-  <mat-step [stepControl]="clienteForm">
-    <form [formGroup]="clienteForm">
-      <ng-template matStepLabel >Dados do Cliente</ng-template>
-      <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputNome">Nome</label>
+              <input type="text" class="form-control" id="inputNome"
+                placeholder="Nome do Tutor" formControlName="nome"
+                [ngClass]="{ 'invalid-field': clienteForm.get('nome')?.invalid && clienteForm.get('nome')?.touched }">
+            </div>
 
-        <div class="form-group col-md-6">
-          <label for="inputNome">Nome</label>
-          <input type="text" class="form-control" id="inputNome" placeholder="Nome do Tutor" formControlName="nome"
-          [ngClass]="{ 'invalid-field': clienteForm.get('nome')?.invalid && clienteForm.get('nome')?.touched }"
+            <div class="form-group col-md-6">
+              <label for="inputCPF">CPF</label>
+              <input type="text" class="form-control" id="inputCPF"
+                placeholder="CPF" formControlName="cpf"
+                [ngClass]="{ 'invalid-field': clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched }">
+            </div>
+          </div>
 
-          >
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <label for="inputEmail4">Email</label>
+              <input type="text" class="form-control" id="inputEmail4"
+                placeholder="123@gmail.com" formControlName="email">
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="inputTelefone">Telefone</label>
+              <input type="text" class="form-control" id="inputTelefone"
+                placeholder="Digite o telefone" formControlName="telefone">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCidade">Cidade</label>
+              <input type="text" class="form-control" id="inputCidade"
+                placeholder="Digite a cidade" formControlName="cidade">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputCep">CEP</label>
+              <input type="text" class="form-control" id="inputCep"
+                placeholder="000000-000" formControlName="cep">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputCep">Número</label>
+              <input type="text" class="form-control" id="inputNumero"
+                placeholder="123" formControlName="numero">
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <button class="btn custom button"  mat-button matStepperNext>Próximo</button>
+          </div>
+        </form>
+      </mat-step>
+    </div>
+
+    <mat-step [stepControl]="petForm">
+      <form [formGroup]="petForm">
+        <ng-template matStepLabel>Dados do Pet</ng-template>
+        <div class="form-group">
+          <label for="inputNomePet">Nome do Pet</label>
+          <input type="text" class="form-control" id="inputNomePet"
+            placeholder="Nome do Pet" formControlName="nomePet"
+            [ngClass]="{ 'invalid-field': petForm.get('nomePet')?.invalid && petForm.get('nomePet')?.touched }">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputIdade">Idade</label>
+            <input type="text" class="form-control" id="inputIdade"
+              placeholder="Idade" formControlName="idade">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPeso">Peso</label>
+            <input type="text" class="form-control" id="inputPeso"
+              placeholder="Peso(kg)" formControlName="peso">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputEspecie">Espécie</label>
+            <select class="form-control" id="inputEspecie"
+              formControlName="especie">
+              <option value disabled selected>Selecione</option>
+              <option value="Cão">Cão</option>
+              <option value="Gato">Gato</option>
+              <option value="Ave">Ave</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="inputRaca">Raça</label>
+            <select class="form-control" id="inputRaca" formControlName="raca">
+              <option value disabled selected>Selecione</option>
+              <ng-container *ngIf="petForm.get('especie')?.value === 'Cão'">
+                <option *ngFor="let raca of racasCachorros" [value]="raca">{{
+                  raca
+                  }}</option>
+              </ng-container>
+              <ng-container *ngIf="petForm.get('especie')?.value === 'Gato'">
+                <option *ngFor="let raca of racasGatos" [value]="raca">{{ raca
+                  }}</option>
+              </ng-container>
+              <ng-container
+                *ngIf="petForm.get('especie')?.value !== 'Cão' && petForm.get('especie')?.value !== 'Gato'">
+                <option *ngFor="let raca of racasCachorros" [value]="raca">{{
+                  raca
+                  }}</option>
+                <option *ngFor="let raca of racasGatos" [value]="raca">{{ raca
+                  }}</option>
+              </ng-container>
+            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="inputSexo">Sexo</label>
+            <select class="form-control" id="inputSexo" formControlName="sexo">
+              <option value disabled selected>Selecione</option>
+              <option value="Macho">Macho</option>
+              <option value="Fêmea">Fêmea</option>
+            </select>
+          </div>
+
         </div>
 
-        <div class="form-group col-md-6">
-          <label for="inputCPF">CPF</label>
-          <input type="text" class="form-control" id="inputCPF" placeholder="CPF" formControlName="cpf"
-          [ngClass]="{ 'invalid-field': clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched }">
+        <div class="d-flex justify-content-end">
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button mat-button (click)="validatePetForm()" matStepperNext>Próximo</button>
         </div>
-      </div>
+      </form>
+    </mat-step>
 
-      <div class="form-row">
-        <div class="form-group  col-md-8">
-          <label for="inputEmail4">Email</label>
-          <input type="text" class="form-control" id="inputEmail4" placeholder="123@gmail.com" formControlName="email">
-        </div>
+    <mat-step>
+      <ng-template matStepLabel>Confirmação</ng-template>
 
-        <div class="form-group col-md-4">
-          <label for="inputTelefone">Telefone</label>
-          <input type="text" class="form-control" id="inputTelefone" placeholder="Digite o telefone" formControlName="telefone">
-        </div>
-      </div>
+      <h3>Confirme os dados:</h3>
 
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCidade">Cidade</label>
-          <input type="text" class="form-control" id="inputCidade" placeholder="Digite a cidade" formControlName="cidade">
-        </div>
-        <div class="form-group col-md-3">
-          <label for="inputCep">CEP</label>
-          <input type="text" class="form-control" id="inputCep" placeholder="000000-000" formControlName="cep">
-        </div>
-        <div class="form-group col-md-3">
-          <label for="inputCep">Número</label>
-          <input type="text" class="form-control" id="inputNumero" placeholder="123" formControlName="numero">
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-end">
-        <button mat-button matStepperNext>Próximo</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="petForm">
-    <form [formGroup]="petForm">
-      <ng-template matStepLabel>Dados do Pet</ng-template>
-      <div class="form-group">
-        <label for="inputNomePet">Nome do Pet</label>
-        <input type="text" class="form-control" id="inputNomePet" placeholder="Nome do Pet" formControlName="nomePet"
-        [ngClass]="{ 'invalid-field': petForm.get('nomePet')?.invalid && petForm.get('nomePet')?.touched }">
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputIdade">Idade</label>
-          <input type="text" class="form-control" id="inputIdade" placeholder="Idade" formControlName="idade">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputPeso">Peso</label>
-          <input type="text" class="form-control" id="inputPeso" placeholder="Peso(kg)" formControlName="peso">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="inputEspecie">Espécie</label>
-          <select class="form-control" id="inputEspecie" formControlName="especie">
-            <option value="" disabled selected>Selecione</option>
-            <option value="Cão">Cão</option>
-            <option value="Gato">Gato</option>
-            <option value="Ave">Ave</option>
-          </select>
-        </div>
-
-        <div class="form-group col-md-4">
-          <label for="inputRaca">Raça</label>
-          <select class="form-control" id="inputRaca" formControlName="raca">
-            <option value="" disabled selected>Selecione</option>
-            <ng-container *ngIf="petForm.get('especie')?.value === 'Cão'">
-              <option *ngFor="let raca of racasCachorros" [value]="raca">{{ raca }}</option>
-            </ng-container>
-            <ng-container *ngIf="petForm.get('especie')?.value === 'Gato'">
-              <option *ngFor="let raca of racasGatos" [value]="raca">{{ raca }}</option>
-            </ng-container>
-            <ng-container *ngIf="petForm.get('especie')?.value !== 'Cão' && petForm.get('especie')?.value !== 'Gato'">
-              <option *ngFor="let raca of racasCachorros" [value]="raca">{{ raca }}</option>
-              <option *ngFor="let raca of racasGatos" [value]="raca">{{ raca }}</option>
-            </ng-container>
-          </select>
-        </div>
-
-
-
-
-        <div class="form-group col-md-4">
-          <label for="inputSexo">Sexo</label>
-          <select class="form-control" id="inputSexo" formControlName="sexo">
-            <option value="" disabled selected>Selecione</option>
-            <option value="Macho">Macho</option>
-            <option value="Fêmea">Fêmea</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div class="d-flex justify-content-end">
-        <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button (click)="validatePetForm()" matStepperNext>Próximo</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Confirmação</ng-template>
-
-    <div class="row">
-      <div class="col-md-6">
-        <h5>Dados do Cliente:</h5>
+      <div class="confirmation-container">
+        <h5>Dados do tutor:</h5>
         <table class="table">
           <tbody>
             <tr>
@@ -156,7 +172,8 @@
         </table>
       </div>
 
-      <div class="col-md-6">
+      <div class="confirmation-container">
+
         <h5>Dados do Pet:</h5>
         <table class="table">
           <tbody>
@@ -182,17 +199,11 @@
             </tr>
           </tbody>
         </table>
-
-
       </div>
-    </div>
-
-    <div class="d-flex justify-content-end">
-      <button mat-button matStepperPrevious>Anterior</button>
-      <button mat-button (click)="submitForm()">Cadastrar</button>
-    </div>
-  </mat-step>
-
-
-</mat-horizontal-stepper>
-
+      <div class="d-flex justify-content-between">
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button color="primary" (click)="submitForm()">Enviar</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

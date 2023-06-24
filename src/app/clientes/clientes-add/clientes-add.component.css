@@ -29,3 +29,51 @@
 }
 
 
+.custom-button {
+  background-color: #820ad1 !important;
+  color: #FFFFFF !important;
+}
+
+
+
+
+
+
+
+
+/* Estilos para o formulário */
+.container {
+  margin-top: 20px;
+}
+
+.form-container {
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
+
+.invalid-field {
+  border: 1px solid red;
+}
+
+/* Estilos para a etapa de confirmação */
+.confirmation-container {
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para o scroll nas telas menores */
+@media (max-height: 400px) {
+  .form-container, .confirmation-container {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+}

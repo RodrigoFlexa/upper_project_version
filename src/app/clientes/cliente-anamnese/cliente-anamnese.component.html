@@ -9,59 +9,12 @@
 
 </div>
 
-<!-- <div class="row">
-
-  <div class="col-xl-12 col-md-6">
-    <div class="card mb-3">
-      <div class="card-header custom-card-header-2">
-        Informações do Pet
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="text-left">
-              <p><strong>Pet:</strong> {{ cliente.pet.nome }}</p>
-              <p><strong>Sexo:</strong> {{ cliente.pet.sexo }}</p>
-              <p><strong>Idade:</strong> {{ cliente.pet.idade }}</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="text-left">
-              <p><strong>Espécie:</strong> {{ cliente.pet.especie }}</p>
-              <p><strong>Raça:</strong> {{ cliente.pet.raca }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-   <div class="col-xl-4 col-md-6">
-    <div class="card mb-3" [ngClass]="{'chart-card': chartCardActivated}">
-      <div class="card-header custom-card-header-2">
-        Suporte ao diagnóstico
-      </div>
-      <div class="card-body d-flex justify-content-center align-items-center" [hidden]="!chartCardActivated"
-        [ngClass]="{'expanded': chartCardActivated, 'not_expanded': !chartCardActivated}">
-        <div class="chart-container" [ngClass]="{'h-auto': chartCardActivated}">
-          <canvas id="myChart"></canvas>
-        </div>
-      </div>
-      <div class="card-footer">
-        <div class="d-flex justify-content-end mt-4">
-          <button class="btn btn-primary w-100 custom-button  custom-button" type="button"
-            (click)="ativarSuporteDiagnostico()">
-            Consultar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <div class="row">
   <!-- Formulário -->
+
   <div class="col-md-8 d-flex flex-column">
+
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center mt-4">
@@ -95,13 +48,12 @@
                   <input type="text" class="form-control"
                     [(ngModel)]="motivosSelecionada"
                     placeholder="Digite o motivo da consulta"
+                    [class.invalid]="motivoInvalido && !motivosSelecionada"
                     (keyup.enter)="adicionarMotivo()">
                   <div class="input-group-append">
-
-                    <button
-                      class="btn btn-primary w-100 custom-button custom-button"
+                    <button class="btn btn-primary w-100 custom-button custom-button"
                       type="button"
-                      (click)="adicionarMotivo()">
+                      (click)="adicionarMotivo();">
                       <i class="fas fa-plus"></i> Adicionar
                     </button>
                   </div>
@@ -113,7 +65,8 @@
 
         <!-- Formulário de Sintomas -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold no-border-header">
+          <div
+            class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-heartbeat"></i> Sintomas
           </div>
           <div class="card-body">
@@ -121,7 +74,8 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary custom-button-listas btn-sm m-2"
+                    <button
+                      class="btn btn-primary custom-button-listas btn-sm m-2"
                       *ngFor="let sintoma of sintomasAdicionados"
                       (click)="removerSintoma(sintoma)">
                       <i class="fas fa-times me-1"></i> {{ sintoma }}
@@ -134,6 +88,7 @@
                     [(ngModel)]="sintomaSelecionado"
                     [formControl]="sintomaControl"
                     placeholder="Digite os sintomas"
+                    [class.invalid]="sintomasInvalido && !sintomaSelecionado"
                     (keyup.enter)="adicionarSintoma()"
                     [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete">
@@ -159,7 +114,8 @@
 
         <!-- Formulário de Cirurgias -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold no-border-header">
+          <div
+            class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-procedures"></i> Cirurgias Anteriores
           </div>
           <div class="card-body mb-4">
@@ -167,7 +123,8 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary  custom-button-listas btn-sm m-2"
+                    <button
+                      class="btn btn-primary  custom-button-listas btn-sm m-2"
                       *ngFor="let cirurgia of cirurgiasAnteriores"
                       (click)="removerCirurgia(cirurgia)">
                       <i class="fas fa-times me-1"></i> {{ cirurgia }}
@@ -178,6 +135,7 @@
                   <input type="text" class="form-control"
                     [(ngModel)]="cirurgiaSelecionada"
                     placeholder="Digite as cirurgias"
+                    [class.invalid]="cirurgiasInvalido && !cirurgiaSelecionada"
                     (keyup.enter)="adicionarCirurgia()">
                   <div class="input-group-append">
                     <button class="btn btn-primary   custom-button"
@@ -193,7 +151,8 @@
 
         <!-- Formulário de Doenças Prévias -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold no-border-header">
+          <div
+            class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-notes-medical"></i> Doenças Prévias
           </div>
           <div class="card-body mb-4">
@@ -201,7 +160,8 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary   custom-button-listas btn-sm m-2"
+                    <button
+                      class="btn btn-primary   custom-button-listas btn-sm m-2"
                       *ngFor="let doenca of doencasPrevias"
                       (click)="removerDoencaPrevia(doenca)">
                       <i class="fas fa-times me-1"></i> {{ doenca }}
@@ -214,6 +174,7 @@
                     [(ngModel)]="doencaPreviaSelecionada"
                     [formControl]="doencasControl"
                     placeholder="Digite as doenças"
+                    [class.invalid]="doencasInvalido && !doencaPreviaSelecionada"
                     (keyup.enter)="adicionarDoencaPrevia()"
                     [matAutocomplete]="doencasAuto">
                   <mat-autocomplete #doencasAuto="matAutocomplete">
@@ -238,7 +199,8 @@
 
         <!-- Formulário de Medicamentos em Uso -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold no-border-header">
+          <div
+            class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-prescription-bottle"></i> Medicamentos em Uso
           </div>
           <div class="card-body mb-4">
@@ -246,7 +208,8 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary custom-button-listas btn-sm m-2"
+                    <button
+                      class="btn btn-primary custom-button-listas btn-sm m-2"
                       *ngFor="let medicamento of medicamentosEmUso"
                       (click)="removerMedicamentoEmUso(medicamento)">
                       <i class="fas fa-times me-1"></i> {{ medicamento }}
@@ -257,6 +220,7 @@
                   <input type="text" class="form-control"
                     [(ngModel)]="medicamentoSelecionado"
                     placeholder="Digite os medicamentos"
+                    [class.invalid]="medicamentosInvalido && !medicamentoSelecionado"
                     (keyup.enter)="adicionarMedicamentoEmUso()">
                   <div class="input-group-append">
                     <button class="btn btn-primary   custom-button"
@@ -272,7 +236,8 @@
 
         <!-- Formulário de Comportamento -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold no-border-header">
+          <div
+            class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-paw"></i> Comportamento
           </div>
           <div class="card-body mb-4">
@@ -280,7 +245,8 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary  custom-button-listas btn-sm m-2"
+                    <button
+                      class="btn btn-primary  custom-button-listas btn-sm m-2"
                       *ngFor="let comportamento of comportamentos"
                       (click)="removerComportamento(comportamento)">
                       <i class="fas fa-times me-1"></i> {{ comportamento }}
@@ -291,6 +257,7 @@
                   <input type="text" class="form-control"
                     [(ngModel)]="comportamentoSelecionado"
                     placeholder="Digite os comportamentos"
+                    [class.invalid]="comportamentoInvalido && !comportamentoSelecionado"
                     (keyup.enter)="adicionarComportamento()">
                   <div class="input-group-append">
                     <button class="btn btn-primary   custom-button"
@@ -306,7 +273,8 @@
 
         <!-- Formulário de Reprodução -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold no-border-header">
+          <div
+            class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-venus-mars"></i> Reprodução
           </div>
           <div class="card-body mb-4">
@@ -314,7 +282,8 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary custom-button-listas btn-sm m-2"
+                    <button
+                      class="btn btn-primary custom-button-listas btn-sm m-2"
                       *ngFor="let reproducao of reproducao"
                       (click)="removerReproducao(reproducao)">
                       <i class="fas fa-times me-1"></i> {{ reproducao }}
@@ -325,6 +294,7 @@
                   <input type="text" class="form-control"
                     [(ngModel)]="reproducaoSelecionada"
                     placeholder="Digite os detalhes da reprodução"
+                    [class.invalid]="reproducaoInvalido && !reproducaoSelecionada"
                     (keyup.enter)="adicionarReproducao()">
                   <div class="input-group-append">
                     <button class="btn btn-primary   custom-button"
@@ -340,7 +310,8 @@
 
         <!-- Formulário de Viagem -->
         <div class="card mb-4">
-          <div class="card-header custom-card-header font-weight-bold no-border-header">
+          <div
+            class="card-header custom-card-header font-weight-bold no-border-header">
             <i class="fas fa-suitcase-rolling"></i> Viagem
           </div>
           <div class="card-body mb-4">
@@ -348,7 +319,8 @@
               <div class="col-md-12">
                 <div class="mt-3">
                   <div class="d-flex flex-wrap">
-                    <button class="btn btn-primary custom-button-listas btn-sm m-2"
+                    <button
+                      class="btn btn-primary custom-button-listas btn-sm m-2"
                       *ngFor="let viagem of viagens"
                       (click)="removerViagem(viagem)">
                       <i class="fas fa-times me-1"></i> {{ viagem }}
@@ -359,6 +331,7 @@
                   <input type="text" class="form-control"
                     [(ngModel)]="viagemSelecionada"
                     placeholder="Digite os detalhes da viagem"
+                    [class.invalid]="viagemInvalido && !viagemSelecionada"
                     (keyup.enter)="adicionarViagem()">
                   <div class="input-group-append">
                     <button class="btn btn-primary   custom-button"
@@ -377,10 +350,10 @@
         <div class="d-flex justify-content-between">
 
           <button class="btn btn-primary custom-button-consulta" type="button"
-          style="visibility: hidden; pointer-events: none;"
-          (click)="ativarSuporteDiagnostico()">
-          Consultar suporte ao Diagnóstico
-        </button>
+            style="visibility: hidden; pointer-events: none;"
+            (click)="ativarSuporteDiagnostico()">
+            Consultar suporte ao Diagnóstico
+          </button>
 
           <button class="btn btn-primary custom-button" type="button"
             (click)="cadastrarAnamnese()">
@@ -393,19 +366,20 @@
     </div>
 
   </div>
+
   <!--Fim do Formulário -->
 
   <!-- Coluna à Direita -->
   <div class="col-md-4">
-
-    <div class="card h-100">
-      <div class="card-body text-center">
-
-        <div class="card mb-3">
-          <div class="card-header custom-card-header-2">
-            Informações do Pet
-          </div>
-          <div class="card-body">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            <h3 style="margin: 0;">Informações do Pet</h3>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body">
             <div class="row">
               <div class="col-md-6">
                 <div class="text-left">
@@ -423,41 +397,48 @@
             </div>
           </div>
         </div>
-
-        <br>
-
-
-        <div class="timeline-container">
-          <div class="timeline-title text-center" style="display: flex; align-items: center;">
-            <hr style="border-top: 2px solid black; flex-grow: 1;">
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
             <h3 style="margin: 0;">Histórico</h3>
-            <hr style="border-top: 2px solid black; flex-grow: 1;">
-          </div>
-          
-          <section class="py-5">
-            <ul class="timeline-with-icons">
-              <li class="timeline-item mb-5" *ngFor="let anamnese of anamneses">
-                <div class="timeline-clickable" (click)="logAnamneseId(anamnese.id)">
-                  <span class="timeline-icon">
-                    <i class="fas fa-file-archive timeline-icon-size hoverable" style="color:#0089e3;"></i>
-                  </span>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+            <div style="max-height: 500px; overflow-y: scroll;">
+              <div id="timeline">
+                <div class="timeline-container">
+                  <section class="py-5">
+                    <ul class="timeline-with-icons">
+                      <li class="timeline-item mb-5" *ngFor="let anamnese of anamneses">
+                        <div class="timeline-clickable" (click)="logAnamneseId(anamnese.id)">
+                          <span class="timeline-icon">
+                            <i class="fas fa-file-archive timeline-icon-size hoverable" style="color:#0089e3;"></i>
+                          </span>
+                        </div>
+                        <h5 class="fw-bold text-center">Data: {{ anamnese.dataCriacao }}</h5>
+                        <p class="text-muted mb-2 fw-bold text-center">Motivo Da Consulta: {{ anamnese.motivoDaConsulta }}</p>
+                        <p class="text-muted text-center">Sintomas: {{ anamnese.sintomas }}</p>
+                        <p style="color: #ffff;">id: {{ anamnese.id }}</p>
+                      </li>
+                    </ul>
+                  </section>
                 </div>
-                <h5 class="fw-bold">Data: {{ anamnese.dataCriacao }}</h5>
-                <p class="text-muted mb-2 fw-bold">Motivo Da Consulta: {{ anamnese.motivoDaConsulta }}</p>
-                <p class="text-muted">Sintomas: {{ anamnese.sintomas }}</p>
-                <p style="color: #ffff;">id: {{ anamnese.id }}</p>
-              </li>
-            </ul>
-          </section>
-          
-          
-          
-
+              </div>
+            </div>
+          </div>
         </div>
-
 
 
       </div>
     </div>
   </div>
+
+
+
 </div>
+
+
+
+
