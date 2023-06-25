@@ -4,60 +4,82 @@
       <mat-step [stepControl]="clienteForm">
         <form [formGroup]="clienteForm">
           <ng-template matStepLabel>Dados do Cliente</ng-template>
-          <div class="form-row">
 
+          <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputNome">Nome</label>
-              <input type="text" class="form-control" id="inputNome"
-                placeholder="Nome do Tutor" formControlName="nome"
-                [ngClass]="{ 'invalid-field': clienteForm.get('nome')?.invalid && clienteForm.get('nome')?.touched }">
+              <input type="text" class="form-control" id="inputNome" placeholder="Nome do Tutor" formControlName="nome"
+                [ngClass]="{'is-invalid': isFieldInvalid('nome')}">
+              <div class="invalid-feedback" [class.d-none]="!clienteForm.get('nome')?.invalid || clienteForm.get('nome')?.value !== ''">
+                O nome é obrigatório.
+              </div>
             </div>
 
             <div class="form-group col-md-6">
               <label for="inputCPF">CPF</label>
-              <input type="text" class="form-control" id="inputCPF"
-                placeholder="CPF" formControlName="cpf"
-                [ngClass]="{ 'invalid-field': clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched }">
+              <input type="text" class="form-control" id="inputCPF" placeholder="CPF" formControlName="cpf"
+                [ngClass]="{'is-invalid': isFieldInvalid('cpf')}">
+              <div class="invalid-feedback" [class.d-none]="!clienteForm.get('cpf')?.invalid || clienteForm.get('cpf')?.value !== ''">
+                O CPF é obrigatório.
+              </div>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-8">
               <label for="inputEmail4">Email</label>
-              <input type="text" class="form-control" id="inputEmail4"
-                placeholder="123@gmail.com" formControlName="email">
+              <input type="text" class="form-control" id="inputEmail4" placeholder="123@gmail.com" formControlName="email"
+                [ngClass]="{'is-invalid': isFieldInvalid('email')}">
+              <div class="invalid-feedback" [class.d-none]="!clienteForm.get('email')?.invalid || clienteForm.get('email')?.value !== ''">
+                O email é obrigatório.
+              </div>
             </div>
 
             <div class="form-group col-md-4">
               <label for="inputTelefone">Telefone</label>
-              <input type="text" class="form-control" id="inputTelefone"
-                placeholder="Digite o telefone" formControlName="telefone">
+              <input type="text" class="form-control" id="inputTelefone" placeholder="Digite o telefone" formControlName="telefone"
+                [ngClass]="{'is-invalid': isFieldInvalid('telefone')}">
+              <div class="invalid-feedback" [class.d-none]="!clienteForm.get('telefone')?.invalid || clienteForm.get('telefone')?.value !== ''">
+                O telefone é obrigatório.
+              </div>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCidade">Cidade</label>
-              <input type="text" class="form-control" id="inputCidade"
-                placeholder="Digite a cidade" formControlName="cidade">
+              <input type="text" class="form-control" id="inputCidade" placeholder="Digite a cidade" formControlName="cidade"
+                [ngClass]="{'is-invalid': isFieldInvalid('cidade')}">
+              <div class="invalid-feedback" [class.d-none]="!clienteForm.get('cidade')?.invalid || clienteForm.get('cidade')?.value !== ''">
+                A cidade é obrigatória.
+              </div>
             </div>
             <div class="form-group col-md-3">
               <label for="inputCep">CEP</label>
-              <input type="text" class="form-control" id="inputCep"
-                placeholder="000000-000" formControlName="cep">
+              <input type="text" class="form-control" id="inputCep" placeholder="000000-000" formControlName="cep"
+                [ngClass]="{'is-invalid': isFieldInvalid('cep')}">
+              <div class="invalid-feedback" [class.d-none]="!clienteForm.get('cep')?.invalid || clienteForm.get('cep')?.value !== ''">
+                O CEP é obrigatório.
+              </div>
             </div>
             <div class="form-group col-md-3">
               <label for="inputCep">Número</label>
-              <input type="text" class="form-control" id="inputNumero"
-                placeholder="123" formControlName="numero">
+              <input type="text" class="form-control" id="inputNumero" placeholder="123" formControlName="numero"
+                [ngClass]="{'is-invalid': isFieldInvalid('numero')}">
+              <div class="invalid-feedback" [class.d-none]="!clienteForm.get('numero')?.invalid || clienteForm.get('numero')?.value !== ''">
+                O número é obrigatório.
+              </div>
             </div>
           </div>
 
           <div class="d-flex justify-content-end">
-            <button class="btn custom button"  mat-button matStepperNext>Próximo</button>
+            <button class="btn custom button" type="submit" (click)="proximo()" mat-button matStepperNext>Próximo</button>
           </div>
         </form>
+
       </mat-step>
+
+
     </div>
 
     <mat-step [stepControl]="petForm">
@@ -66,74 +88,84 @@
         <div class="form-group">
           <label for="inputNomePet">Nome do Pet</label>
           <input type="text" class="form-control" id="inputNomePet"
-            placeholder="Nome do Pet" formControlName="nomePet"
-            [ngClass]="{ 'invalid-field': petForm.get('nomePet')?.invalid && petForm.get('nomePet')?.touched }">
+            placeholder="Nome do Pet" formControlName="nomePet" [ngClass]="{'is-invalid': isPetFieldInvalid('nomePet')}">
+          <div class="invalid-feedback" [class.d-none]="!petForm.get('nomePet')?.invalid || petForm.get('nomePet')?.value !== ''">
+            O nome do pet é obrigatório.
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputIdade">Idade</label>
             <input type="text" class="form-control" id="inputIdade"
-              placeholder="Idade" formControlName="idade">
+              placeholder="Idade" formControlName="idade" [ngClass]="{'is-invalid': isPetFieldInvalid('idade')}">
+            <div class="invalid-feedback" [class.d-none]="!petForm.get('idade')?.invalid || petForm.get('idade')?.value !== ''">
+              A idade do pet é obrigatória.
+            </div>
           </div>
           <div class="form-group col-md-6">
             <label for="inputPeso">Peso</label>
             <input type="text" class="form-control" id="inputPeso"
-              placeholder="Peso(kg)" formControlName="peso">
+              placeholder="Peso(kg)" formControlName="peso" [ngClass]="{'is-invalid': isPetFieldInvalid('peso')}">
+            <div class="invalid-feedback" [class.d-none]="!petForm.get('peso')?.invalid || petForm.get('peso')?.value !== ''">
+              O peso do pet é obrigatório.
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputEspecie">Espécie</label>
             <select class="form-control" id="inputEspecie"
-              formControlName="especie">
+              formControlName="especie" [ngClass]="{'is-invalid': isPetFieldInvalid('especie')}">
               <option value disabled selected>Selecione...</option>
               <option value="Cão">Cão</option>
               <option value="Gato">Gato</option>
               <option value="Ave">Ave</option>
             </select>
+            <div class="invalid-feedback" [class.d-none]="!petForm.get('especie')?.invalid || petForm.get('especie')?.value !== ''">
+              A espécie do pet é obrigatória.
+            </div>
           </div>
 
           <div class="form-group col-md-4">
             <label for="inputRaca">Raça</label>
-            <select class="form-control" id="inputRaca" formControlName="raca">
+            <select class="form-control" id="inputRaca" formControlName="raca" [ngClass]="{'is-invalid': isPetFieldInvalid('raca')}">
               <option value disabled selected>Selecione...</option>
               <ng-container *ngIf="petForm.get('especie')?.value === 'Cão'">
-                <option *ngFor="let raca of racasCachorros" [value]="raca">{{
-                  raca
-                  }}</option>
+                <option *ngFor="let raca of racasCachorros" [value]="raca">{{ raca }}</option>
               </ng-container>
               <ng-container *ngIf="petForm.get('especie')?.value === 'Gato'">
-                <option *ngFor="let raca of racasGatos" [value]="raca">{{ raca
-                  }}</option>
+                <option *ngFor="let raca of racasGatos" [value]="raca">{{ raca }}</option>
               </ng-container>
-              <ng-container
-                *ngIf="petForm.get('especie')?.value !== 'Cão' && petForm.get('especie')?.value !== 'Gato'">
-                <option *ngFor="let raca of racasCachorros" [value]="raca">{{
-                  raca
-                  }}</option>
-                <option *ngFor="let raca of racasGatos" [value]="raca">{{ raca
-                  }}</option>
+              <ng-container *ngIf="petForm.get('especie')?.value !== 'Cão' && petForm.get('especie')?.value !== 'Gato'">
+                <option *ngFor="let raca of racasCachorros" [value]="raca">{{ raca }}</option>
+                <option *ngFor="let raca of racasGatos" [value]="raca">{{ raca }}</option>
               </ng-container>
             </select>
+            <div class="invalid-feedback" [class.d-none]="!petForm.get('raca')?.invalid || petForm.get('raca')?.value !== ''">
+              A raça do pet é obrigatória.
+            </div>
           </div>
 
           <div class="form-group col-md-4">
             <label for="inputSexo">Sexo</label>
-            <select class="form-control" id="inputSexo" formControlName="sexo">
+            <select class="form-control" id="inputSexo" formControlName="sexo" [ngClass]="{'is-invalid': isPetFieldInvalid('sexo')}">
               <option value disabled selected>Selecione...</option>
               <option value="Macho">Macho</option>
               <option value="Fêmea">Fêmea</option>
             </select>
+            <div class="invalid-feedback" [class.d-none]="!petForm.get('sexo')?.invalid || petForm.get('sexo')?.value !== ''">
+              O sexo do pet é obrigatório.
+            </div>
           </div>
-
         </div>
 
         <div class="d-flex justify-content-end">
           <button mat-button matStepperPrevious>Anterior</button>
-          <button mat-button (click)="validatePetForm()" matStepperNext>Próximo</button>
+          <button mat-button matStepperNext (click)="petProximo()">Próximo</button>
         </div>
       </form>
     </mat-step>
+
 
     <mat-step>
       <ng-template matStepLabel>Confirmação</ng-template>

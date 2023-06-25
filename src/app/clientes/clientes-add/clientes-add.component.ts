@@ -48,7 +48,29 @@ export class ClientesAddComponent implements OnInit {
     });
   }
 
+  isFieldInvalid(fieldName: string): boolean {
+    const field = this.clienteForm.get(fieldName);
+    return field !== null && field.invalid && (field.touched || field.dirty);
+  }
 
+  isPetFieldInvalid(fieldName: string): boolean {
+    const field = this.petForm.get(fieldName);
+    return field !== null && field.invalid && (field.touched || field.dirty);
+  }
+
+  petProximo(): void {
+    if (this.petForm.invalid) {
+      this.petForm.markAllAsTouched();
+      return;
+    }
+  }
+
+  proximo(): void {
+    if (this.clienteForm.invalid) {
+      this.clienteForm.markAllAsTouched();
+      return;
+    }
+  }
 
   ngOnInit(): void {
     this.service.getRacas().subscribe((racas: any) => {
@@ -57,13 +79,6 @@ export class ClientesAddComponent implements OnInit {
     });
   }
 
-  validateClienteForm() {
-    this.clienteForm.markAllAsTouched();
-  }
-
-  validatePetForm() {
-    this.petForm.markAllAsTouched();
-  }
 
   closeDialog(): void {
     this.dialogRef.close();
