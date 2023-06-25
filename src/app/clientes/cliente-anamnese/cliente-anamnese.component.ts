@@ -54,6 +54,7 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   sintomaControl = new FormControl();
   filteredSintomas!: Observable<string[]>;
   sintomas_sugestoes: string[] = ['dificuldade para comer', 'mudança de hábitos alimentares', 'gengivas em sangue', 'hálito com odor forte', 'mudança de comportamento', 'perda de dentes', 'febre', 'mastigar apenas num lado da boca', 'perda de peso', 'convulsões', 'úlceras no focinho', 'ganho de peso', 'dificuldade de engolir', 'edema', 'apatia', 'sangramento na pele', 'secreções oculares', 'salivação abundante', 'secreções nasais', 'aumento do volume de urina', 'prostração', 'espirros', 'diarreia', 'falta de coordenação', 'perda de apetite', 'rigidez nos músculos', 'desmaio', 'fraqueza', 'dificuldade em respirar', 'isolamento', 'urina escura', 'aumento da ingestão de água', 'espasmos musculares', 'úlceras bucais', 'úlceras na boca', 'diarreia sanguinolenta', 'desidratação', 'tosse', 'mau hálito', 'saliva com sangue', 'fotofobia', 'tremores', 'vômito', 'inquietação', 'agressividade', 'dentes fraturados', 'anemia', 'tiques nervosos', 'paralisia']
+
   private _filterSintomas(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.sintomas_sugestoes.filter((sintoma: string) =>
@@ -76,6 +77,7 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
   doencasControl = new FormControl();
   filteredDoencas!: Observable<string[]>;
   doencas_sugestoes: string[] = ['Parvovirose', 'Cinomose', 'Leptospirose', 'Raiva', 'Doença periodontal', 'insuficiencia renal', 'Giardía', 'doença do carrapato', 'Doença cardíaca']
+
   private _filterDoencas(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.doencas_sugestoes.filter((doenca: string) =>
@@ -218,7 +220,6 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
 
 
   ativarSuporteDiagnostico() {
-
     const preenchido = this.fichaAnamnesePreenchida();
     if(preenchido){
       this.openDialog()

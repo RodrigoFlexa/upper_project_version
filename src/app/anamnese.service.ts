@@ -25,4 +25,8 @@ export class AnamneseService {
     return this.http.get<Anamnese>(url);
   }
 
+  getConta(id: number): Observable<any> {
+    const url = `https://laikapet.sinopeoficial.com.br/api/conta/${id}`;
+    return this.http.get<any>(url);
+  }
 }

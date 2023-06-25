@@ -57,18 +57,17 @@
             </div>
             <div class="col-md-6">
               <div *ngIf="!requisicaoEmAndamento && requisicaoConcluida">
-              <h3 >Descrição:</h3>
-              <a>Com base no que foi fornecido, pudemos concluir com x% de certeza o diagnóstico y para o pet</a>
+                <h3>Descrição:</h3>
+                <p>
+                  Com base nos dados fornecidos, pudemos concluir com {{ maiorProbabilidade }}% de certeza o diagnóstico
+                  '{{ doenca }}' para o pet '{{ nomePet }}'.
+                </p>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </mat-tab>
-
-
-
-
-
 </mat-tab-group>

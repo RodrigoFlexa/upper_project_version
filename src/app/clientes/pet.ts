@@ -6,6 +6,7 @@ export class Pet {
   especie: string;
   raca: string;
   sexo:string;
+
   constructor() {
     this.id = 0;
     this.nome = '';

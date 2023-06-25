@@ -13,6 +13,7 @@ export class Anamnese {
   viagem : string;
   dataCriacao: string;
 
+
   constructor() {
     this.pet_id = 0;
     this.id = 0;
