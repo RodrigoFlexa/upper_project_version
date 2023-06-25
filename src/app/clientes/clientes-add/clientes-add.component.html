@@ -86,7 +86,7 @@
             <label for="inputEspecie">Espécie</label>
             <select class="form-control" id="inputEspecie"
               formControlName="especie">
-              <option value disabled selected>Selecione</option>
+              <option value disabled selected>Selecione...</option>
               <option value="Cão">Cão</option>
               <option value="Gato">Gato</option>
               <option value="Ave">Ave</option>
@@ -96,7 +96,7 @@
           <div class="form-group col-md-4">
             <label for="inputRaca">Raça</label>
             <select class="form-control" id="inputRaca" formControlName="raca">
-              <option value disabled selected>Selecione</option>
+              <option value disabled selected>Selecione...</option>
               <ng-container *ngIf="petForm.get('especie')?.value === 'Cão'">
                 <option *ngFor="let raca of racasCachorros" [value]="raca">{{
                   raca
@@ -120,7 +120,7 @@
           <div class="form-group col-md-4">
             <label for="inputSexo">Sexo</label>
             <select class="form-control" id="inputSexo" formControlName="sexo">
-              <option value disabled selected>Selecione</option>
+              <option value disabled selected>Selecione...</option>
               <option value="Macho">Macho</option>
               <option value="Fêmea">Fêmea</option>
             </select>

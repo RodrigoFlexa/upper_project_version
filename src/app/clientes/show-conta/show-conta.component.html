@@ -33,12 +33,12 @@
     </div>
   </mat-tab>
 
-  <mat-tab label="Possíveis diagnósticos">
+  <mat-tab label="Suporte ao diagnóstico">
     <div class="card-body">
       <div class="card mb-3">
         <div class="card-header custom-card-header font-weight-bold no-border-header">
           <div class="d-flex justify-content-between align-items-center mt-4">
-            Possíveis diagnósticos
+            Pré-diagnósticos
             <button class="btn btn-primary custom-button" (click)="solicitarRequisicao()" [disabled]="requisicaoEmAndamento">Solicitar</button>
           </div>
         </div>
@@ -56,7 +56,10 @@
               </canvas>
             </div>
             <div class="col-md-6">
-              <h3 *ngIf="!requisicaoEmAndamento && requisicaoConcluida">Texto</h3>
+              <div *ngIf="!requisicaoEmAndamento && requisicaoConcluida">
+              <h3 >Descrição:</h3>
+              <a>Com base no que foi fornecido, pudemos concluir com x% de certeza o diagnóstico y para o pet</a>
+              </div>
             </div>
           </div>
         </div>

@@ -133,6 +133,7 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
     const ultimaAnamnese = this.anamneses[this.anamneses.length - 1];
     console.log(ultimaAnamnese)
     const data = {
+      id: ultimaAnamnese.id,
       motivos: ultimaAnamnese.motivoDaConsulta,
       sintomas: ultimaAnamnese.sintomas,
       cirurgias: ultimaAnamnese.cirurgias,
@@ -164,6 +165,7 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
         console.log('anamnese.id:', resposta);
         // Faça o que for necessário com a resposta da anamnese
         const data = {
+          id: resposta.id,
           motivos: resposta.motivoDaConsulta,
           sintomas: resposta.sintomas,
           cirurgias: resposta.cirurgias,
@@ -335,8 +337,6 @@ export class ClienteAnamneseComponent implements OnInit, AfterViewInit {
       );
     }
   }
-
-
 
   voltarPraatendimento(cliente: User) {
     this.router.navigate(['/cliente', cliente.id], { state: { cliente } });
