@@ -45,7 +45,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
-              <div *ngIf="requisicaoEmAndamento" class="load">Carregando...</div>
+              <div *ngIf="requisicaoEmAndamento" class="load">Calculando...</div>
               <canvas baseChart class="barChart" *ngIf="!requisicaoEmAndamento && requisicaoConcluida"
                 [data]="barChartData"
                 [options]="barChartOptions"
