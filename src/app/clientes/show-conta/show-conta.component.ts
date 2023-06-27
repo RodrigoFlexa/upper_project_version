@@ -30,7 +30,7 @@ export class ShowContaComponent implements OnInit {
       x: {},
       y: {
         min: 0,
-        max :100
+        max: 100
       }
     },
     plugins: {
@@ -40,9 +40,6 @@ export class ShowContaComponent implements OnInit {
       datalabels: {
         anchor: 'center',
         align: 'center',
-        // padding: {
-        //   top: 20
-        // }
       }
     }
   };
@@ -69,14 +66,13 @@ export class ShowContaComponent implements OnInit {
 
     this.anamneseService.getConta(anamneseId).subscribe(
       dados => {
+
         const preDiagnostico = dados['pre-diagnostico'];
         const nomePet = dados.pet.nome;
-
+        console.log(preDiagnostico)
         if (preDiagnostico && preDiagnostico.length > 0) {
-          const uniquePreDiagnostico = this.getUniquePreDiagnostico(preDiagnostico);
-
-          const labels = uniquePreDiagnostico.map((item: { doenca: any; }) => item.doenca);
-          const data = uniquePreDiagnostico.map((item: { porcentagem: any; }) => item.porcentagem);
+          const labels = preDiagnostico.map((item: { doenca: any; }) => item.doenca);
+          const data = preDiagnostico.map((item: { porcentagem: any; }) => item.porcentagem);
 
           this.barChartData = {
             labels: labels,
@@ -85,7 +81,7 @@ export class ShowContaComponent implements OnInit {
             ]
           };
 
-          const maiorProbabilidadeItem = uniquePreDiagnostico.reduce((prev: { porcentagem: number; }, current: { porcentagem: number; }) => (prev.porcentagem > current.porcentagem) ? prev : current);
+          const maiorProbabilidadeItem = preDiagnostico.reduce((prev: { porcentagem: number; }, current: { porcentagem: number; }) => (prev.porcentagem > current.porcentagem) ? prev : current);
           this.maiorProbabilidade = parseFloat(maiorProbabilidadeItem.porcentagem);
           this.doenca = maiorProbabilidadeItem.doenca;
           this.nomePet = nomePet;
@@ -103,17 +99,6 @@ export class ShowContaComponent implements OnInit {
         this.requisicaoConcluida = true;
       }
     );
-  }
-
-  private getUniquePreDiagnostico(preDiagnostico: any[]): any[] {
-    const uniqueItems = new Map();
-
-    for (const item of preDiagnostico) {
-      if (!uniqueItems.has(item.doenca) || uniqueItems.get(item.doenca).porcentagem < item.porcentagem) {
-        uniqueItems.set(item.doenca, item);
-      }
-    }
-    return Array.from(uniqueItems.values());
   }
 
   closeDialog(): void {
